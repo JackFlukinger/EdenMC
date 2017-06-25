@@ -41,7 +41,7 @@ public class GoldFunctions {
 
     //Checks if ItemStack is Gold Pieces
     public static boolean isGold(ItemStack item) {
-        if (item != null && item.getType() == Material.SHEARS) {
+        if (item != null && item.getType() == Material.QUARTZ) {
             if (item.hasItemMeta() && item.getItemMeta().isUnbreakable()) {
                 if (item.getItemMeta().getDisplayName().equals("§rGold Piece")) {
                     return true;
@@ -54,8 +54,7 @@ public class GoldFunctions {
     //Gets gold item in specified amount
     public static ItemStack getGoldItem(Integer amount) {
 
-        ItemStack gold = new ItemStack(Material.SHEARS, amount);
-        gold.setDurability((short) 2);
+        ItemStack gold = new ItemStack(Material.QUARTZ, amount);
         ItemMeta meta = gold.getItemMeta();
         meta.setDisplayName("§rGold Piece");
         meta.setUnbreakable(true);

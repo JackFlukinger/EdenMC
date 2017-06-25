@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.Inventory;
@@ -50,8 +51,8 @@ public class SatchelHandler implements Listener {
         if (balance > 2700) {
             balance = 2700;
         }
-        int rowsNeeded = (int) Math.ceil(balance / 50 / 9);
-        int stacksNeeded = (int) Math.floor(balance / 50);
+        int rowsNeeded = (int) Math.ceil((balance / 50) / 9D);
+        int stacksNeeded = (int) Math.floor(balance / 50D);
         int remainder = balance % 50;
         if (rowsNeeded == 0) {
             rowsNeeded = 1;
@@ -92,6 +93,13 @@ public class SatchelHandler implements Listener {
         meta.setLore(Arrays.asList(lore));
         satchel.setItemMeta(meta);
         p.getInventory().setItemInOffHand(satchel);
+    }
+
+    public static boolean hasSatchel(Player p) {
+        if (ItemFunctions.isItem(p.getInventory().getItemInOffHand(),"Satchel")) {
+            return true;
+        }
+        return false;
     }
 
     //Prevent moving satchel between inventories
@@ -137,5 +145,15 @@ public class SatchelHandler implements Listener {
             }
         }
         list.remove(Satchel);
+    }
+
+    //If a player has joined before and doesn't have a satchel for whatever reason, give them one
+    @EventHandler
+    public void giveSatchelOnJoin(PlayerJoinEvent e) {
+        if (e.getPlayer().hasPlayedBefore()) {
+            if (!hasSatchel(e.getPlayer())) {
+                giveSatchel(e.getPlayer(), GoldFunctions.getBalance(e.getPlayer()));
+            }
+        }
     }
 }
