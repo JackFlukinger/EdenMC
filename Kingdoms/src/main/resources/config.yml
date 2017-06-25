@@ -1,0 +1,12 @@
+StartingGold: 150
+MySQL:
+    Host: 108.60.194.10
+    Database: mc38447
+    Username: mc38447
+    Password: ee7aa198e7
+    TablePrefix: kingdoms
+Items:
+    Satchel:
+        Item: GOLD_AXE
+        Data: 2
+        Name: Satchel

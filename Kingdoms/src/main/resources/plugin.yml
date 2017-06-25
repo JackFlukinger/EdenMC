@@ -1,0 +1,12 @@
+name: Kingdoms
+main: org.edenmc.kingdoms.Kingdoms
+version: 1.0.0
+depend: [ProtocolLib]
+website: edenmc.org
+author: fLuK3_
+commands:
+  items:
+    aliases: i
+    permission: items.*
+  gold:
+    permission: gold.*
