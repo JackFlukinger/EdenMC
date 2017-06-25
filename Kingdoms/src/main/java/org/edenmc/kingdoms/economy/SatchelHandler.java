@@ -52,12 +52,11 @@ public class SatchelHandler implements Listener {
         }
         int rowsNeeded = (int) Math.ceil(balance / 50 / 9);
         int stacksNeeded = (int) Math.floor(balance / 50);
-        Integer remainder = balance % 50;
+        int remainder = balance % 50;
         if (rowsNeeded == 0) {
             rowsNeeded = 1;
         }
-        Integer slotsNeeded = rowsNeeded * 9;
-        Inventory satchel = Bukkit.getServer().createInventory(null, slotsNeeded, "Satchel          " + Kingdoms.playerGold.get(p) + " Gold Pieces");
+        Inventory satchel = Bukkit.getServer().createInventory(null, rowsNeeded * 9, "Satchel          " + Kingdoms.playerGold.get(p) + " Gold Pieces");
         ItemStack[] items = new ItemStack[stacksNeeded];
         if (remainder > 0) {
             items = new ItemStack[stacksNeeded + 1];
