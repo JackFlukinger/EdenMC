@@ -43,12 +43,18 @@ public class MySQL {
                     " PRIMARY KEY (uuid))";
             createTable.executeUpdate(sql);
         } catch (SQLException e) {
-            System.out.println(e);
-            Bukkit.getServer().broadcastMessage("MySQL Error - check console for details");
+            e.printStackTrace();
         }
     }
 
     public static void enterData(String table, String[] columns, String[] data) {
+        try {
+            if (con.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         table = prefix + "_" + table;
         try {
             Statement statement = con.createStatement();
@@ -77,7 +83,6 @@ public class MySQL {
                 }
             }
             sql = sql.substring(0,sql.length() - 2);
-            Bukkit.broadcastMessage(sql);
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             System.out.println(e);
@@ -86,6 +91,13 @@ public class MySQL {
     }
 
     public static String getData(String table, String check, String column, String condition) {
+        try {
+            if (con.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         table = prefix + "_" + table;
         try {
             Statement statement = con.createStatement();

@@ -1,6 +1,7 @@
 package org.edenmc.kingdoms.items;
 
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -36,4 +37,17 @@ public class ItemFunctions {
         p.getInventory().addItem(finalItem);
     }
 
+    public static ItemStack setMaxStackSize(ItemStack is, int amount){
+        try {
+
+            net.minecraft.server.v1_12_R1.ItemStack nmsIS = CraftItemStack.asNMSCopy(is);
+
+            nmsIS.getItem().d(amount);
+
+            return CraftItemStack.asBukkitCopy(nmsIS);
+
+        } catch (Throwable t) { }
+
+        return null;
+    }
 }

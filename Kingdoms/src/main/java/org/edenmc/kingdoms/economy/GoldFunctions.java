@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.edenmc.kingdoms.Kingdoms;
 import org.edenmc.kingdoms.MySQL;
+import org.edenmc.kingdoms.items.ItemFunctions;
 
 /**
  * Created by Jack on 6/21/2017.
@@ -37,6 +38,7 @@ public class GoldFunctions {
         MySQL.enterData("players",columns,data);
         Kingdoms.playerGold.put(p,balance);
         SatchelHandler.setSatchelBalance(p,balance);
+        SatchelHandler.updateSatchel(p);
     }
 
     //Checks if ItemStack is Gold Pieces
@@ -60,6 +62,7 @@ public class GoldFunctions {
         meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         gold.setItemMeta(meta);
+        ItemFunctions.setMaxStackSize(gold,50);
         return gold;
 
     }

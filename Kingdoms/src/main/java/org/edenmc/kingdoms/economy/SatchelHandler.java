@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -51,8 +52,8 @@ public class SatchelHandler implements Listener {
         if (balance > 2700) {
             balance = 2700;
         }
-        int rowsNeeded = (int) Math.ceil((balance / 50) / 9D);
-        int stacksNeeded = (int) Math.floor(balance / 50D);
+        int rowsNeeded = (int) Math.ceil((balance / 50.0000) / 9.0000);
+        int stacksNeeded = (int) Math.floor(balance / 50.0000);
         int remainder = balance % 50;
         if (rowsNeeded == 0) {
             rowsNeeded = 1;
@@ -68,6 +69,7 @@ public class SatchelHandler implements Listener {
         if (remainder > 0) {
             items[stacksNeeded] = GoldFunctions.getGoldItem(remainder);
         }
+        satchel.setMaxStackSize(50);
         satchel.setStorageContents(items);
         p.openInventory(satchel);
     }
@@ -131,12 +133,15 @@ public class SatchelHandler implements Listener {
             if (e.getInventory().getName().startsWith("Satchel")) {
                 SatchelHandler.giveSatchel(((Player) e.getPlayer()).getPlayer(), GoldFunctions.getBalance((Player) ((Player) e.getPlayer()).getPlayer()));
             }
+            if (GoldFunctions.isGold(e.getPlayer().getItemOnCursor())) {
+                e.getPlayer().setItemOnCursor(null);
+            }
         }
     }
 
     //Prevent dropping satchel on death
     @EventHandler
-    public void disableSatchelDrop(PlayerDeathEvent e) {
+    public void disableSatchelDropOnDeath(PlayerDeathEvent e) {
         List<ItemStack> list = e.getDrops();
         ItemStack Satchel = null;
         for (ItemStack item : list) {
@@ -154,6 +159,44 @@ public class SatchelHandler implements Listener {
             if (!hasSatchel(e.getPlayer())) {
                 giveSatchel(e.getPlayer(), GoldFunctions.getBalance(e.getPlayer()));
             }
+        }
+    }
+
+    //Disable dragging satchel into inventory
+    @EventHandler
+    public void stopSatchelDragEvent(InventoryDragEvent e) {
+        if (ItemFunctions.isItem(e.getCursor(), "Satchel")) {
+            e.setCancelled(true);
+        }
+    }
+
+    //Update satchel interface if player currently viewing
+    public static void updateSatchel(Player p) {
+        if (p.getOpenInventory().getTopInventory().getName().startsWith("Satchel")) {
+            Integer balance = Kingdoms.playerGold.get(p);
+            if (balance > 2700) {
+                balance = 2700;
+            }
+            int rowsNeeded = (int) Math.ceil((balance / 50.0000) / 9.0000);
+            int stacksNeeded = (int) Math.floor(balance / 50.0000);
+            int remainder = balance % 50;
+            if (rowsNeeded == 0) {
+                rowsNeeded = 1;
+            }
+            Inventory satchel = Bukkit.getServer().createInventory(null, rowsNeeded * 9, "Satchel          " + Kingdoms.playerGold.get(p) + " Gold Pieces");
+            ItemStack[] items = new ItemStack[stacksNeeded];
+            if (remainder > 0) {
+                items = new ItemStack[stacksNeeded + 1];
+            }
+            for (int i = 0; i < stacksNeeded; i++) {
+                items[i] = GoldFunctions.getGoldItem(50);
+            }
+            if (remainder > 0) {
+                items[stacksNeeded] = GoldFunctions.getGoldItem(remainder);
+            }
+            satchel.setMaxStackSize(50);
+            satchel.setStorageContents(items);
+            p.openInventory(satchel);
         }
     }
 }
