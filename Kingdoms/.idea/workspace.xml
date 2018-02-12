@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d768a953-8f9b-4aaf-8155-fe1a15da6e58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_1_12_R0_1_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizen.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/CitizenHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CraftListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemMobSpawnUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Traversable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/Race.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceFunctions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/customitems.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/MySQL.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/MySQL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldFunctions.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldFunctions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/SatchelHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/SatchelHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config.yml" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -849,7 +826,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498453383482</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Citizens implemented, custom items integrated, kingdoms classes and race classes created">
+      <created>1518418709774</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1518418709774</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -901,7 +885,8 @@
     <MESSAGE value="Update pom.xml" />
     <MESSAGE value="Gold Pieces switched to Nether Quartz" />
     <MESSAGE value="Satchel handlers completed, adding/removing gold fully implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Satchel handlers completed, adding/removing gold fully implemented" />
+    <MESSAGE value="Citizens implemented, custom items integrated, kingdoms classes and race classes created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Citizens implemented, custom items integrated, kingdoms classes and race classes created" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
