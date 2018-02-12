@@ -1,5 +1,6 @@
 package org.edenmc.kingdoms;
 
+import com.mysql.jdbc.CommunicationsException;
 import org.bukkit.Bukkit;
 
 import java.sql.*;
@@ -40,6 +41,7 @@ public class MySQL {
             String sql = "CREATE TABLE IF NOT EXISTS " + playerTable +
                     " (uuid VARCHAR(36) not NULL, " +
                     " balance INTEGER, " +
+                    " race VARCHAR(16), " +
                     " PRIMARY KEY (uuid))";
             createTable.executeUpdate(sql);
         } catch (SQLException e) {
@@ -84,8 +86,14 @@ public class MySQL {
             }
             sql = sql.substring(0,sql.length() - 2);
             statement.executeUpdate(sql);
-        } catch (SQLException e) {
+        } catch (CommunicationsException e) {
             System.out.println(e);
+            connect();
+            enterData(table,columns,data);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
         }
 
     }
@@ -104,10 +112,18 @@ public class MySQL {
             String query = "SELECT " + column + " FROM " + table + " WHERE " + check + "='" + condition + "'";
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) {
-                return rs.getObject(1).toString();
+                if (rs.getObject(1) != null) {
+                    return rs.getObject(1).toString();
+                }
+                return null;
             }
+        } catch (CommunicationsException e) {
+            e.printStackTrace();
+            connect();
+            return getData(table,check,column,condition);
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
+
         }
         return "";
     }

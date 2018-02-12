@@ -1,6 +1,5 @@
 package org.edenmc.kingdoms.economy;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,14 +13,11 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.edenmc.kingdoms.Kingdoms;
+import org.edenmc.kingdoms.citizen.Citizen;
 import org.edenmc.kingdoms.items.ItemFunctions;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,7 +31,8 @@ public class SatchelHandler implements Listener {
         if (e.getWhoClicked() instanceof Player) {
             if (ItemFunctions.isItem(e.getCurrentItem(), "Satchel")) {
                 e.setCancelled(true);
-                openSatchel((Player) e.getWhoClicked());
+                Citizen p = Kingdoms.getCitizen(e.getWhoClicked().getName());
+                p.openSatchel(p);
             }
         }
     }
@@ -46,63 +43,6 @@ public class SatchelHandler implements Listener {
         e.setCancelled(true);
     }
 
-    //Opens satchel inventory, puts in the gold pieces
-    public void openSatchel(Player p) {
-        Integer balance = Kingdoms.playerGold.get(p);
-        if (balance > 2700) {
-            balance = 2700;
-        }
-        int rowsNeeded = (int) Math.ceil((balance / 50.0000) / 9.0000);
-        int stacksNeeded = (int) Math.floor(balance / 50.0000);
-        int remainder = balance % 50;
-        if (rowsNeeded == 0) {
-            rowsNeeded = 1;
-        }
-        Inventory satchel = Bukkit.getServer().createInventory(null, rowsNeeded * 9, "Satchel          " + Kingdoms.playerGold.get(p) + " Gold Pieces");
-        ItemStack[] items = new ItemStack[stacksNeeded];
-        if (remainder > 0) {
-            items = new ItemStack[stacksNeeded + 1];
-        }
-        for (int i = 0; i < stacksNeeded; i++) {
-            items[i] = GoldFunctions.getGoldItem(50);
-        }
-        if (remainder > 0) {
-            items[stacksNeeded] = GoldFunctions.getGoldItem(remainder);
-        }
-        satchel.setMaxStackSize(50);
-        satchel.setStorageContents(items);
-        p.openInventory(satchel);
-    }
-
-    public static void giveSatchel(Player p, Integer balance) {
-        ItemStack satchel = new ItemStack(Material.getMaterial((String) Kingdoms.itemMap.get("Satchel").get(0)));
-        ItemMeta meta = satchel.getItemMeta();
-        Integer durability = (Integer) Kingdoms.itemMap.get("Satchel").get(1);
-        meta.setUnbreakable(true);
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        satchel.setDurability(durability.shortValue());
-        meta.setDisplayName("§r" + Kingdoms.itemMap.get("Satchel").get(2));
-        String[] lore = {"§b" + balance + " Gold Pieces"};
-        meta.setLore(Arrays.asList(lore));
-        satchel.setItemMeta(meta);
-        p.getInventory().setItemInOffHand(satchel);
-    }
-
-    public static void setSatchelBalance(Player p, Integer balance) {
-        ItemStack satchel = p.getInventory().getItemInOffHand();
-        ItemMeta meta = satchel.getItemMeta();
-        String[] lore = {"§b" + balance + " Gold Pieces"};
-        meta.setLore(Arrays.asList(lore));
-        satchel.setItemMeta(meta);
-        p.getInventory().setItemInOffHand(satchel);
-    }
-
-    public static boolean hasSatchel(Player p) {
-        if (ItemFunctions.isItem(p.getInventory().getItemInOffHand(),"Satchel")) {
-            return true;
-        }
-        return false;
-    }
 
     //Prevent moving satchel between inventories
     @EventHandler
@@ -123,7 +63,8 @@ public class SatchelHandler implements Listener {
     //Give player satchel on respawn
     @EventHandler
     public void giveSatchelOnRespawn(PlayerRespawnEvent e) {
-        SatchelHandler.giveSatchel(e.getPlayer(), GoldFunctions.getBalance(e.getPlayer()));
+        Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
+        p.giveSatchel();
     }
 
     //Give player satchel when closing satchel inventory
@@ -131,7 +72,8 @@ public class SatchelHandler implements Listener {
     public void giveSatchelOnSatchelClose(InventoryCloseEvent e) {
         if (e.getPlayer() instanceof Player) {
             if (e.getInventory().getName().startsWith("Satchel")) {
-                SatchelHandler.giveSatchel(((Player) e.getPlayer()).getPlayer(), GoldFunctions.getBalance((Player) ((Player) e.getPlayer()).getPlayer()));
+                Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
+                p.giveSatchel();
             }
             if (GoldFunctions.isGold(e.getPlayer().getItemOnCursor())) {
                 e.getPlayer().setItemOnCursor(null);
@@ -156,8 +98,9 @@ public class SatchelHandler implements Listener {
     @EventHandler
     public void giveSatchelOnJoin(PlayerJoinEvent e) {
         if (e.getPlayer().hasPlayedBefore()) {
-            if (!hasSatchel(e.getPlayer())) {
-                giveSatchel(e.getPlayer(), GoldFunctions.getBalance(e.getPlayer()));
+            Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
+            if (!p.hasSatchel()) {
+                p.giveSatchel();
             }
         }
     }
@@ -167,36 +110,6 @@ public class SatchelHandler implements Listener {
     public void stopSatchelDragEvent(InventoryDragEvent e) {
         if (ItemFunctions.isItem(e.getCursor(), "Satchel")) {
             e.setCancelled(true);
-        }
-    }
-
-    //Update satchel interface if player currently viewing
-    public static void updateSatchel(Player p) {
-        if (p.getOpenInventory().getTopInventory().getName().startsWith("Satchel")) {
-            Integer balance = Kingdoms.playerGold.get(p);
-            if (balance > 2700) {
-                balance = 2700;
-            }
-            int rowsNeeded = (int) Math.ceil((balance / 50.0000) / 9.0000);
-            int stacksNeeded = (int) Math.floor(balance / 50.0000);
-            int remainder = balance % 50;
-            if (rowsNeeded == 0) {
-                rowsNeeded = 1;
-            }
-            Inventory satchel = Bukkit.getServer().createInventory(null, rowsNeeded * 9, "Satchel          " + Kingdoms.playerGold.get(p) + " Gold Pieces");
-            ItemStack[] items = new ItemStack[stacksNeeded];
-            if (remainder > 0) {
-                items = new ItemStack[stacksNeeded + 1];
-            }
-            for (int i = 0; i < stacksNeeded; i++) {
-                items[i] = GoldFunctions.getGoldItem(50);
-            }
-            if (remainder > 0) {
-                items[stacksNeeded] = GoldFunctions.getGoldItem(remainder);
-            }
-            satchel.setMaxStackSize(50);
-            satchel.setStorageContents(items);
-            p.openInventory(satchel);
         }
     }
 }

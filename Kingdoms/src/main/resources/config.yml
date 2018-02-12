@@ -1,8 +1,8 @@
 StartingGold: 150
 MySQL:
-    Host: 108.60.194.10
-    Database: mc38447
-    Username: mc38447
+    Host: 127.0.0.1
+    Database: eden
+    Username: root
     Password: ee7aa198e7
     TablePrefix: kingdoms
 Items:
@@ -10,3 +10,36 @@ Items:
         Item: GOLD_AXE
         Data: 2
         Name: Satchel
+Races:
+    Human:
+        GUI:
+            Material: IRON_CHESTPLATE
+        Effects:
+            1:
+            - LUCK.1000000.0.false
+            2:
+            - LUCK.1000000.1.false
+    Dwarf:
+        GUI:
+            Material: DIAMOND_CHESTPLATE
+        Effects:
+            1:
+            - FAST_DIGGING.1000000.0.false
+            2:
+            - FAST_DIGGING.1000000.1.false
+    Orc:
+        GUI:
+            Material: CHAINMAIL_CHESTPLATE
+        Effects:
+            1:
+            - INCREASE_DAMAGE.1000000.0.false
+            2:
+            - INCREASE_DAMAGE.1000000.1.false
+    Elf:
+        GUI:
+            Material: LEATHER_CHESTPLATE
+        Effects:
+            1:
+            - SPEED.1000000.0.false
+            2:
+            - SPEED.1000000.1.false

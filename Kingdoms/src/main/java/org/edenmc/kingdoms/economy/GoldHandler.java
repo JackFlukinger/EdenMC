@@ -9,8 +9,8 @@ import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.edenmc.kingdoms.Kingdoms;
+import org.edenmc.kingdoms.citizen.Citizen;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,12 +25,10 @@ public class GoldHandler implements Listener  {
     //Give player starting gold as defined in config
     @EventHandler
     public void startingGold(PlayerJoinEvent e) throws IOException {
+        Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
         if (!e.getPlayer().hasPlayedBefore()) {
-            SatchelHandler.giveSatchel(e.getPlayer(), Kingdoms.startingGold);
-            GoldFunctions.setBalance(e.getPlayer(),Kingdoms.startingGold);
-        } else {
-            Kingdoms.playerGold.put(e.getPlayer(), GoldFunctions.getBalance(e.getPlayer()));
-            e.getPlayer().sendMessage("Balance: " + GoldFunctions.getBalance(e.getPlayer()));
+            p.giveSatchel();
+            p.setBalance(Kingdoms.startingGold);
         }
     }
 
@@ -38,10 +36,11 @@ public class GoldHandler implements Listener  {
     @EventHandler
     public void pickupGold(PlayerPickupItemEvent e) {
         if (GoldFunctions.isGold(e.getItem().getItemStack())) {
+            Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
             Integer amount = e.getItem().getItemStack().getAmount();
             e.setCancelled(true);
             e.getItem().remove();
-            GoldFunctions.setBalance(e.getPlayer(), Kingdoms.playerGold.get(e.getPlayer()) + amount);
+            p.setBalance(p.getBalance() + amount);
             e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP,0.5F,1.0F);
             Integer duration = 30;
             if (lastTitle.containsKey(e.getPlayer()) && (Long) lastTitle.get(e.getPlayer())[0] + (duration * 50) > System.currentTimeMillis()) {
@@ -58,13 +57,6 @@ public class GoldHandler implements Listener  {
         }
     }
 
-    //Remove player from HashMap when they leave server
-    @EventHandler
-    public void playerLeave(PlayerQuitEvent e) {
-        if (Kingdoms.playerGold.containsKey(e.getPlayer())) {
-            Kingdoms.playerGold.remove(e.getPlayer());
-        }
-    }
 
     //Cancels hoppers or minecarts picking up gold nuggets
     @EventHandler
@@ -113,9 +105,9 @@ public class GoldHandler implements Listener  {
     public void goldDropEvent(PlayerDropItemEvent e) {
         if (GoldFunctions.isGold(e.getItemDrop().getItemStack())) {
             Integer amount = e.getItemDrop().getItemStack().getAmount();
-            Player p = e.getPlayer();
-            Integer newBalance = Kingdoms.playerGold.get(p) - amount;
-            GoldFunctions.setBalance(p, newBalance);
+            Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
+            Integer newBalance = p.getBalance() - amount;
+            p.setBalance(newBalance);
         }
     }
 }

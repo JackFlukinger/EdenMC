@@ -1,7 +1,7 @@
 name: Kingdoms
 main: org.edenmc.kingdoms.Kingdoms
 version: 1.0.0
-depend: [ProtocolLib]
+depend: []
 website: edenmc.org
 author: fLuK3_
 commands:

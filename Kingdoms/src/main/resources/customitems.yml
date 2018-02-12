@@ -1,0 +1,1146 @@
+Types:
+- '&2Unsung'
+- '&aProminent'
+- '&eCelebrated'
+- '&6Fabled'
+- '&dLegendary'
+- '&5Mythical'
+ItemsToAffect:
+  LEATHER_HELMET:
+    Prefixes:
+    - Hunter's
+    - Scholar's
+    - Woven
+    - Padded
+    - Sewn
+    - Handmade
+    - Enduring
+    Bases:
+    - Leather
+    Suffixes:
+    - Cap
+    - Helmet
+    - Hat
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  LEATHER_CHESTPLATE:
+    Prefixes:
+    - Hunter's
+    - Scholar's
+    - Woven
+    - Padded
+    - Sewn
+    - Handmade
+    - Enduring
+    Bases:
+    - Leather
+    Suffixes:
+    - Shirt
+    - Chestplate
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  LEATHER_LEGGINGS:
+    Prefixes:
+    - Hunter's
+    - Scholar's
+    - Woven
+    - Padded
+    - Sewn
+    - Handmade
+    - Enduring
+    Bases:
+    - Leather
+    Suffixes:
+    - Pants
+    - Leggings
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  LEATHER_BOOTS:
+    Prefixes:
+    - Hunter's
+    - Scholar's
+    - Woven
+    - Padded
+    - Sewn
+    - Handmade
+    - Enduring
+    Bases:
+    - Leather
+    Suffixes:
+    - Shoes
+    - Boots
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  IRON_HELMET:
+    Prefixes:
+    - Dwarf-Make
+    - Knight's
+    - Warrior's
+    - Reinforced
+    - Fortified
+    - Hand Hammered
+    - Forged
+    Bases:
+    - Iron
+    Suffixes:
+    - Helm
+    - Helmet
+    - Mask
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  IRON_CHESTPLATE:
+    Prefixes:
+    - Dwarf-Make
+    - Knight's
+    - Warrior's
+    - Reinforced
+    - Fortified
+    - Hand Hammered
+    - Forged
+    Bases:
+    - Iron
+    Suffixes:
+    - Chestplate
+    - Armor
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  IRON_LEGGINGS:
+    Prefixes:
+    - Dwarf-Make
+    - Knight's
+    - Warrior's
+    - Reinforced
+    - Fortified
+    - Hand Hammered
+    - Forged
+    Bases:
+    - Iron
+    Suffixes:
+    - Leggings
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  IRON_BOOTS:
+    Prefixes:
+    - Dwarf-Make
+    - Knight's
+    - Warrior's
+    - Reinforced
+    - Fortified
+    - Hand Hammered
+    - Forged
+    Bases:
+    - Iron
+    Suffixes:
+    - Boots
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  GOLD_HELMET:
+    Prefixes:
+    - Elven
+    - Pristine
+    - Fine
+    - Untainted
+    - Shiny
+    - Glittering
+    - Gleaming
+    - Glimmering
+    Bases:
+    - Gold
+    - Golden
+    Suffixes:
+    - Helmet
+    - Helm
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  GOLD_CHESTPLATE:
+    Prefixes:
+    - Elven
+    - Fine
+    - Pristine
+    - Untainted
+    - Shiny
+    - Glittering
+    - Gleaming
+    - Glimmering
+    Bases:
+    - Gold
+    - Golden
+    Suffixes:
+    - Chestplate
+    - Armor
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  GOLD_LEGGINGS:
+    Prefixes:
+    - Elven
+    - Fine
+    - Pristine
+    - Untainted
+    - Shiny
+    - Glittering
+    - Gleaming
+    - Glimmering
+    Bases:
+    - Gold
+    - Golden
+    Suffixes:
+    - Leggings
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  GOLD_BOOTS:
+    Prefixes:
+    - Elven
+    - Fine
+    - Pristine
+    - Untainted
+    - Shiny
+    - Glittering
+    - Gleaming
+    - Glimmering
+    Bases:
+    - Gold
+    Suffixes:
+    - Boots
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  DIAMOND_HELMET:
+    Prefixes:
+    - Untainted
+    - Fine Dwarf-Make
+    - Brilliant
+    - Exceptional
+    - Enduring
+    - Exquisite
+    - Fortified
+    Bases:
+    - Diamond Helmet
+    - Diamond Helm
+    Suffixes:
+    - of Heroes
+    - of Legends
+    - of Songs
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  DIAMOND_CHESTPLATE:
+    Prefixes:
+    - Untainted
+    - Fine Dwarf-Make
+    - Brilliant
+    - Exceptional
+    - Enduring
+    - Exquisite
+    - Fortified
+    Bases:
+    - Diamond Chestplate
+    - Diamond Armor
+    Suffixes:
+    - of Heroes
+    - of Legends
+    - of Songs
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  DIAMOND_LEGGINGS:
+    Prefixes:
+    - Untainted
+    - Fine Dwarf-Make
+    - Brilliant
+    - Exceptional
+    - Enduring
+    - Exquisite
+    - Fortified
+    Bases:
+    - Diamond Leggings
+    Suffixes:
+    - of Heroes
+    - of Legends
+    - of Songs
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  DIAMOND_BOOTS:
+    Prefixes:
+    - Untainted
+    - Fine Dwarf-Make
+    - Brilliant
+    - Exceptional
+    - Enduring
+    - Exquisite
+    - Fortified
+    Bases:
+    - Diamond Boots
+    Suffixes:
+    - of Heroes
+    - of Legends
+    - of Songs
+    Modifier: dodge
+    Multiplier: 1
+    MaxEXPAddPerLevel: 10
+    BaseEXP: 80
+  WOOD_HOE:
+    Prefixes:
+    - Splintered
+    - Nomad's
+    - Old
+    - Lesser
+    - Cracked
+    - Weak
+    Bases:
+    - Wood
+    - Wooden
+    Suffixes:
+    - Hoe
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 50
+    BaseEXP: 200
+    RareDropBlocks:
+    - CROPS-7
+    - SUGAR_CANE_BLOCK
+    - MELON_BLOCK
+    - PUMPKIN
+    - RED_MUSHROOM
+    - BROWN_MUSHROOM
+    - DOUBLE_PLANT
+    - RED_ROSE
+    - YELLOW_FLOWER
+    - LONG_GRASS
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - GRASS,300
+  STONE_HOE:
+    Prefixes:
+    - Inferior
+    - Old
+    - Standard
+    - Cracked
+    - Basic
+    - Apprentice's
+    Bases:
+    - Stone
+    Suffixes:
+    - Hoe
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 50
+    BaseEXP: 200
+    RareDropBlocks:
+    - CROPS-7
+    - SUGAR_CANE_BLOCK
+    - MELON_BLOCK
+    - PUMPKIN
+    - RED_MUSHROOM
+    - BROWN_MUSHROOM
+    - DOUBLE_PLANT
+    - RED_ROSE
+    - YELLOW_FLOWER
+    - LONG_GRASS
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - GRASS,300
+  IRON_HOE:
+    Prefixes:
+    - Shiny
+    - Reinforced
+    - Strong
+    - Dwarf-Make
+    - Sturdy
+    - Fine
+    - Journeyman's
+    Bases:
+    - Iron
+    - Wrought Iron
+    Suffixes:
+    - Hoe
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 50
+    BaseEXP: 200
+    RareDropBlocks:
+    - CROPS-7
+    - SUGAR_CANE_BLOCK
+    - MELON_BLOCK
+    - PUMPKIN
+    - RED_MUSHROOM
+    - BROWN_MUSHROOM
+    - DOUBLE_PLANT
+    - RED_ROSE
+    - YELLOW_FLOWER
+    - LONG_GRASS
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - GRASS,300
+  GOLD_HOE:
+    Prefixes:
+    - Fancy
+    - Elven
+    - Brilliant
+    - Pristine
+    - Glittering
+    - Glimmering
+    - Expert's
+    Bases:
+    - Gold
+    - Golden
+    - ""
+    Suffixes:
+    - Hoe
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 50
+    BaseEXP: 200
+    RareDropBlocks:
+    - CROPS-7
+    - SUGAR_CANE_BLOCK
+    - MELON_BLOCK
+    - PUMPKIN
+    - RED_MUSHROOM
+    - BROWN_MUSHROOM
+    - DOUBLE_PLANT
+    - RED_ROSE
+    - YELLOW_FLOWER
+    - LONG_GRASS
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - GRASS,300
+  DIAMOND_HOE:
+    Prefixes:
+    - Artisan's
+    - Exceptional
+    - Fortified
+    - Legendary
+    - Superior
+    - Master's
+    Bases:
+    - Hoe
+    Suffixes:
+    - of Masters
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 50
+    BaseEXP: 200
+    RareDropBlocks:
+    - CROPS-7
+    - SUGAR_CANE_BLOCK
+    - MELON_BLOCK
+    - PUMPKIN
+    - RED_MUSHROOM
+    - BROWN_MUSHROOM
+    - DOUBLE_PLANT
+    - RED_ROSE
+    - YELLOW_FLOWER
+    - LONG_GRASS
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - GRASS,300
+  WOOD_SPADE:
+    Prefixes:
+    - Splintered
+    - Nomad's
+    - Old
+    - Lesser
+    - Cracked
+    - Weak
+    Bases:
+    - Wooden
+    - Wood
+    - ""
+    Suffixes:
+    - Shovel
+    - Spade
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 150
+    BaseEXP: 1000
+    RareDropBlocks:
+    - DIRT
+    - GRASS
+    - GRAVEL
+    - SAND
+    - CLAY
+    - SOUL_SAND
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - DIRT,200
+    - EMERALD,202
+  STONE_SPADE:
+    Prefixes:
+    - Inferior
+    - Rusty
+    - Old
+    - Standard
+    - Cracked
+    - Basic
+    - Apprentice's
+    Bases:
+    - Stone
+    - ""
+    Suffixes:
+    - Shovel
+    - Spade
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 150
+    BaseEXP: 1000
+    RareDropBlocks:
+    - DIRT
+    - GRASS
+    - GRAVEL
+    - SAND
+    - CLAY
+    - SOUL_SAND
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - DIRT,200
+    - EMERALD,202
+  IRON_SPADE:
+    Prefixes:
+    - Shiny
+    - Dwarf-Make
+    - Reinforced
+    - Strong
+    - Sturdy
+    - Fine
+    - Journeyman's
+    Bases:
+    - Iron
+    - ""
+    Suffixes:
+    - Shovel
+    - Spade
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 150
+    BaseEXP: 1000
+    RareDropBlocks:
+    - DIRT
+    - GRASS
+    - GRAVEL
+    - SAND
+    - CLAY
+    - SOUL_SAND
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - DIRT,200
+    - EMERALD,202
+  GOLD_SPADE:
+    Prefixes:
+    - Fancy
+    - Elven
+    - Brilliant
+    - Pristine
+    - Glittering
+    - Glimmering
+    - Expert's
+    Bases:
+    - ""
+    - Gold
+    Suffixes:
+    - Shovel
+    - Spade
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 150
+    BaseEXP: 1000
+    RareDropBlocks:
+    - DIRT
+    - GRASS
+    - GRAVEL
+    - SAND
+    - CLAY
+    - SOUL_SAND
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - DIRT,200
+    - EMERALD,202
+  DIAMOND_SPADE:
+    Prefixes:
+    - Artisan's
+    - Exceptional
+    - Fortified
+    - Legendary
+    - Superior
+    - Master's
+    Bases:
+    - Shovel
+    - Spade
+    Suffixes:
+    - of Masters
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 150
+    BaseEXP: 1000
+    RareDropBlocks:
+    - DIRT
+    - GRASS
+    - GRAVEL
+    - SAND
+    - CLAY
+    - SOUL_SAND
+    RareDrops:
+    - COAL,50
+    - QUARTZ,55
+    - GLOWSTONE_DUST,60
+    - REDSTONE_DUST,90
+    - DIRT,200
+    - EMERALD,202
+  WOOD_AXE:
+    Prefixes:
+    - Splintered
+    - Nomad's
+    - Old
+    - Lesser
+    - Cracked
+    - Weak
+    Bases:
+    - Wood
+    - Wooden
+    - ""
+    Suffixes:
+    - Axe
+    - Hatchet
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 80
+    BaseEXP: 400
+    RareDropBlocks:
+    - LOG
+    - LOG_2
+    - WOOD
+    - BROWN_MUSHROOM_BLOCK
+    - RED_MUSHROOM_BLOCK
+    RareDrops:
+    - SLIME_BALL,50
+    - BOOKSHELF,55
+    - BOOK,60
+    - LOG_2,90
+    - COAL,150
+    - LOG,200
+  STONE_AXE:
+    Prefixes:
+    - Inferior
+    - Old
+    - Standard
+    - Cracked
+    - Basic
+    - Apprentice's
+    Bases:
+    - Stone
+    - ""
+    Suffixes:
+    - Axe
+    - Hatchet
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 80
+    BaseEXP: 400
+    RareDropBlocks:
+    - LOG
+    - LOG_2
+    - WOOD
+    - BROWN_MUSHROOM_BLOCK
+    - RED_MUSHROOM_BLOCK
+    RareDrops:
+    - SLIME_BALL,50
+    - BOOKSHELF,55
+    - BOOK,60
+    - LOG_2,90
+    - COAL,150
+    - LOG,200
+  IRON_AXE:
+    Prefixes:
+    - Shiny
+    - Reinforced
+    - Strong
+    - Sturdy
+    - Dwarf-Make
+    - Fine
+    - Journeyman's
+    Bases:
+    - Iron
+    - ""
+    Suffixes:
+    - Axe
+    - Hatchet
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 80
+    BaseEXP: 400
+    RareDropBlocks:
+    - LOG
+    - LOG_2
+    - WOOD
+    - BROWN_MUSHROOM_BLOCK
+    - RED_MUSHROOM_BLOCK
+    RareDrops:
+    - SLIME_BALL,50
+    - BOOKSHELF,55
+    - BOOK,60
+    - LOG_2,90
+    - COAL,150
+    - LOG,200
+  DIAMOND_AXE:
+    Prefixes:
+    - Artisan's
+    - Exceptional
+    - Fortified
+    - Legendary
+    - Superior
+    - Master's
+    Bases:
+    - Axe
+    - Hatchet
+    Suffixes:
+    - of Masters
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 80
+    BaseEXP: 400
+    RareDropBlocks:
+    - LOG
+    - LOG_2
+    - WOOD
+    - BROWN_MUSHROOM_BLOCK
+    - RED_MUSHROOM_BLOCK
+    RareDrops:
+    - SLIME_BALL,50
+    - BOOKSHELF,55
+    - BOOK,60
+    - LOG_2,90
+    - COAL,150
+    - LOG,200
+  GOLD_AXE:
+    Prefixes:
+    - Fancy
+    - Brilliant
+    - Pristine
+    - Glittering
+    - Elven
+    - Glimmering
+    - Expert's
+    Bases:
+    - Gold
+    - ""
+    Suffixes:
+    - Axe
+    - Hatchet
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 80
+    BaseEXP: 400
+    RareDropBlocks:
+    - LOG
+    - LOG_2
+    - WOOD
+    - BROWN_MUSHROOM_BLOCK
+    - RED_MUSHROOM_BLOCK
+    RareDrops:
+    - SLIME_BALL,50
+    - BOOKSHELF,55
+    - BOOK,60
+    - LOG_2,90
+    - COAL,150
+    - LOG,200
+  WOOD_PICKAXE:
+    Prefixes:
+    - Splintered
+    - Nomad's
+    - Old
+    - Lesser
+    - Cracked
+    - Weak
+    Bases:
+    - Wood
+    - Wooden
+    - ""
+    Suffixes:
+    - Pick
+    - Pickaxe
+    - Mattock
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 110
+    BaseEXP: 1200
+    RareDropBlocks:
+    - COAL_ORE
+    - STONE
+    - DIAMOND_ORE
+    - REDSTONE_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - EMERALD_ORE
+    - LAPIS_ORE
+    - OBSIDIAN
+    - ENDER_STONE
+    - QUARTZ_ORE
+    - GLOWSTONE
+    RareDrops:
+    - IRON_INGOT,50
+    - DIAMOND,55
+    - EMERALD,60
+    - REDSTONE_DUST,90
+    - STONE,300
+  STONE_PICKAXE:
+    Prefixes:
+    - Inferior
+    - Old
+    - Standard
+    - Cracked
+    - Basic
+    - Apprentice's
+    Bases:
+    - Stone
+    - ""
+    Suffixes:
+    - Pick
+    - Pickaxe
+    - Mattock
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 110
+    BaseEXP: 1200
+    RareDropBlocks:
+    - COAL_ORE
+    - STONE
+    - DIAMOND_ORE
+    - REDSTONE_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - EMERALD_ORE
+    - LAPIS_ORE
+    - OBSIDIAN
+    - ENDER_STONE
+    - QUARTZ_ORE
+    - GLOWSTONE
+    RareDrops:
+    - IRON_INGOT,50
+    - DIAMOND,55
+    - EMERALD,60
+    - REDSTONE_DUST,90
+    - STONE,300
+  IRON_PICKAXE:
+    Prefixes:
+    - Shiny
+    - Reinforced
+    - Strong
+    - Sturdy
+    - Dwarf-Make
+    - Fine
+    - Journeyman's
+    Bases:
+    - Iron
+    - ""
+    Suffixes:
+    - Pick
+    - Pickaxe
+    - Mattock
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 110
+    BaseEXP: 1200
+    RareDropBlocks:
+    - COAL_ORE
+    - STONE
+    - DIAMOND_ORE
+    - REDSTONE_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - EMERALD_ORE
+    - LAPIS_ORE
+    - OBSIDIAN
+    - ENDER_STONE
+    - QUARTZ_ORE
+    - GLOWSTONE
+    RareDrops:
+    - IRON_INGOT,50
+    - DIAMOND,55
+    - EMERALD,60
+    - REDSTONE_DUST,90
+    - STONE,300
+  GOLD_PICKAXE:
+    Prefixes:
+    - Fancy
+    - Brilliant
+    - Elven
+    - Pristine
+    - Glittering
+    - Glimmering
+    - Expert's
+    Bases:
+    - Golden
+    - Gold
+    - ""
+    Suffixes:
+    - Pickaxe
+    - Pick
+    - Mattock
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 110
+    BaseEXP: 1200
+    RareDropBlocks:
+    - COAL_ORE
+    - STONE
+    - DIAMOND_ORE
+    - REDSTONE_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - EMERALD_ORE
+    - LAPIS_ORE
+    - OBSIDIAN
+    - ENDER_STONE
+    - QUARTZ_ORE
+    - GLOWSTONE
+    RareDrops:
+    - IRON_INGOT,50
+    - DIAMOND,55
+    - EMERALD,60
+    - REDSTONE_DUST,90
+    - STONE,300
+  WOOD_SWORD:
+    Prefixes:
+    - Lame
+    - Lesser
+    - Cracked
+    - Weak
+    - Old
+    - Useless
+    Bases:
+    - Wood
+    - Wooden
+    - ""
+    Suffixes:
+    - Sword
+    - Shortsword
+    - Dagger
+    Modifier: damage
+    Multiplier: 0.1
+    MaxEXPAddPerLevel: 200
+    BaseEXP: 1000
+  STONE_SWORD:
+    Prefixes:
+    - Ancient
+    - Inferior
+    - Peasant's
+    - Gladiator's
+    - Mediocre
+    - Basic
+    - Standard
+    Bases:
+    - Blade
+    - Sword
+    Suffixes:
+    - of Blacksmiths
+    - of Farmers
+    Modifier: damage
+    Multiplier: 0.1
+    MaxEXPAddPerLevel: 200
+    BaseEXP: 1000
+  IRON_SWORD:
+    Prefixes:
+    - Knight's
+    - Finely Crafted
+    - Fortified
+    - Dwarf-Make Steel
+    - Acute
+    - Fine Iron
+    Bases:
+    - Sword
+    - Longsword
+    - Blade
+    Suffixes:
+    - of Piercing
+    - of Warriors
+    Modifier: damage
+    Multiplier: 0.1
+    MaxEXPAddPerLevel: 200
+    BaseEXP: 1000
+  GOLD_SWORD:
+    Prefixes:
+    - Superior
+    - King's
+    - Pristine
+    - Gleaming
+    - Glittering
+    - Glimmering
+    - Exceptional
+    - Refined
+    Bases:
+    - Sword
+    - Longsword
+    - Blade
+    - Greatsword
+    Suffixes:
+    - of Finesse
+    - of Piercing
+    - of Greatness
+    Modifier: damage
+    Multiplier: 0.1
+    MaxEXPAddPerLevel: 200
+    BaseEXP: 1000
+  DIAMOND_SWORD:
+    Prefixes:
+    - Valiant
+    - Greater
+    - Brilliant
+    - Shining
+    - Heroic
+    - Epic
+    - Exceptional
+    - Deadly
+    - Refined
+    Bases:
+    - Sword
+    - Longsword
+    - Blade
+    Suffixes:
+    - of Heroes
+    - of Piercing
+    - of Destruction
+    Modifier: damage
+    Multiplier: 0.1
+    MaxEXPAddPerLevel: 200
+    BaseEXP: 1000
+  BOW:
+    Prefixes:
+    - Beautiful
+    - Heroic
+    - Epic
+    - Elven
+    Bases:
+    - Longbow
+    - Crossbow
+    - Bow
+    - Recurve Bow
+    Suffixes:
+    - of Heroes
+    - of Piercing
+    - of Destruction
+    Modifier: damage
+    Multiplier: 0.1
+    MaxEXPAddPerLevel: 50
+    BaseEXP: 1000
+  DIAMOND_PICKAXE:
+    Prefixes:
+    - Artisan's
+    - Master's
+    - Fortified
+    - Dwarven
+    - Superior
+    - Exceptional
+    Bases:
+    - Diamond
+    - ""
+    - ""
+    Suffixes:
+    - Pick
+    - Pickaxe
+    - Mattock
+    Modifier: luck
+    Multiplier: 1
+    MaxEXPAddPerLevel: 110
+    BaseEXP: 1200
+    RareDropBlocks:
+    - COAL_ORE
+    - STONE
+    - DIAMOND_ORE
+    - REDSTONE_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - EMERALD_ORE
+    - LAPIS_ORE
+    - OBSIDIAN
+    - ENDER_STONE
+    - QUARTZ_ORE
+    - GLOWSTONE
+    RareDrops:
+    - IRON_INGOT,50
+    - DIAMOND,55
+    - EMERALD,60
+    - REDSTONE_DUST,90
+    - STONE,300
+EXPPerMobKill:
+  PIG: 20
+  ZOMBIE: 100
+  SKELETON: 100
+  CREEPER: 120
+  ENDER_DRAGON: 0
+  PIG_ZOMBIE: 120
+  COW: 50
+  OCELOT: 20
+  WOLF: 20
+  CHICKEN: 15
+  PLAYER: 120
+  SHEEP: 20
+  RABBIT: 15
+  SNOWMAN: 30
+  MUSHROOM_COW: 100
+  IRON_GOLEM: 300
+  GUARDIAN: 220
+  GHAST: 150
+  MAGMA_CUBE: 60
+  SQUID: 15
+  WITCH: 100
+  WITHER: 550
+  SPIDER: 70
+  SLIME: 15
+  SILVERFISH: 80
+  ENDERMAN: 120
+  BLAZE: 120
+  BAT: 50
+  ENDERMITE: 50

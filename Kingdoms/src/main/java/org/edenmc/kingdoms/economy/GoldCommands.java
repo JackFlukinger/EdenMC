@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.edenmc.kingdoms.Kingdoms;
+import org.edenmc.kingdoms.citizen.Citizen;
 
 /**
  * Created by Jack on 6/24/2017.
@@ -15,29 +16,31 @@ public class GoldCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) return false;
-        Player p = (Player) sender;
-        if (cmd.getName().equalsIgnoreCase("gold") && p.hasPermission("gold.*")) {
+        Citizen p = Kingdoms.getCitizen(sender.getName());
+        if (cmd.getName().equalsIgnoreCase("gold") && p.getPlayer().hasPermission("gold.*")) {
             if (args.length == 3) {
-                if (args[0].equals("set") && p.hasPermission("gold.set")) {
+                if (args[0].equals("set") && p.getPlayer().hasPermission("gold.set")) {
                     if (Bukkit.getServer().getPlayerExact(args[1]) != null) {
                         Player recipient = Bukkit.getServer().getPlayerExact(args[1]);
+                        Citizen recip = Kingdoms.getCitizen(recipient.getName());
                         try {
                             Integer newBal = Integer.parseInt(args[2]);
-                            GoldFunctions.setBalance(recipient, newBal);
+                            recip.setBalance(newBal);
                         } catch (NumberFormatException e) {
-                            p.sendMessage("Not a valid integer");
+                            p.getPlayer().sendMessage("Not a valid integer");
                             e.printStackTrace();
                         }
                     } else {
-                        p.sendMessage(args[1] + " is not a valid player");
+                        p.getPlayer().sendMessage(args[1] + " is not a valid player");
                     }
                 }
             } else if (args.length == 1) {
                 if (Bukkit.getServer().getPlayerExact(args[0]) != null) {
-                    p.sendMessage("Balance: " + Kingdoms.playerGold.get(Bukkit.getServer().getPlayerExact(args[0])));
+                    Citizen check = Kingdoms.getCitizen(args[0]);
+                    p.getPlayer().sendMessage("Balance: " + check.getBalance());
                 }
             } else {
-                p.sendMessage("/gold [set] [username] [amount]");
+                p.getPlayer().sendMessage("/gold [set] [username] [amount]");
             }
             return true;
         }
