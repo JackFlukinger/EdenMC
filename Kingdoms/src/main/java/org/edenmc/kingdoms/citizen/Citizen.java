@@ -22,6 +22,7 @@ public class Citizen {
 
     private String name;
     private String race;
+    private int racelevel;
     private String kingdom;
     private int balance;
     private int rows;
@@ -29,6 +30,7 @@ public class Citizen {
 
     public Citizen() {
         race = null;
+        racelevel = 0;
         name = "";
         balance = 0;
 
@@ -37,6 +39,7 @@ public class Citizen {
     public Citizen(Player p) {
         name = p.getName();
         race = loadRace(p);
+        racelevel = loadRaceLevel(p);
         balance = loadBalance(p);
 
     }
@@ -77,6 +80,17 @@ public class Citizen {
 
     }
 
+    private int loadRaceLevel(Player p) {
+        String level = MySQL.getData("players","uuid","racelevel",p.getUniqueId().toString());
+        if (level == null | level == "") {
+            String[] data = {getPlayer().getUniqueId().toString(), "0"};
+            String[] columns = {"uuid","racelevel"};
+            MySQL.enterData("players",columns,data);
+            level = "0";
+        }
+        return Integer.parseInt(level);
+    }
+
 
     public void setRace(String nr) {
         race = nr;
@@ -110,6 +124,10 @@ public class Citizen {
     }
 
     public String getRace() {return race;}
+
+    public int getRacelevel() {
+        return racelevel;
+    }
 
     public int getBalance() {return balance;}
 

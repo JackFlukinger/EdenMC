@@ -120,7 +120,10 @@ public class CustomItemConfig {
     }
 
     public Integer getExpPerMobKill(LivingEntity e) {
-        return expPerMobKill.get(e.getType().toString());
+        if (expPerMobKill.containsKey(e.getType().toString())) {
+            return expPerMobKill.get(e.getType().toString());
+        }
+        return 0;
     }
 
     public boolean isItemInConfig(ItemStack i) {

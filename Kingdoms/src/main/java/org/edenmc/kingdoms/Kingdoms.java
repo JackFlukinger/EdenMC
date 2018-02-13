@@ -1,14 +1,11 @@
 package org.edenmc.kingdoms;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.edenmc.kingdoms.citizen.Citizen;
 import org.edenmc.kingdoms.citizen.CitizenHandler;
 import org.edenmc.kingdoms.customitems.CraftListener;
@@ -19,8 +16,7 @@ import org.edenmc.kingdoms.economy.GoldCommands;
 import org.edenmc.kingdoms.economy.GoldHandler;
 import org.edenmc.kingdoms.economy.SatchelHandler;
 import org.edenmc.kingdoms.items.ItemCommands;
-import org.edenmc.kingdoms.race.Race;
-import org.edenmc.kingdoms.race.RaceGUI;
+import org.edenmc.kingdoms.race.RaceConfig;
 import org.edenmc.kingdoms.race.RaceHandler;
 
 import java.io.File;
@@ -32,7 +28,6 @@ import java.util.HashMap;
  */
 public class Kingdoms extends JavaPlugin {
     public static int startingGold;
-    public static HashMap<String,Race> races = new HashMap<String,Race>();
     public static HashMap<String,ArrayList<Object>> itemMap = new HashMap<String,ArrayList<Object>>();
     public static HashMap<String,String> mySQL = new HashMap<String,String>();
     public static HashMap<String,HashMap<String,String>> tablesToMake = new HashMap<String,HashMap<String,String>>();
@@ -40,6 +35,7 @@ public class Kingdoms extends JavaPlugin {
     private File configf, customitemsf;
     private FileConfiguration config, customitems;
     public static CustomItemConfig cIConf;
+    public static RaceConfig raceConf;
 
     public static void main(String[] args) {
 
@@ -71,7 +67,6 @@ public class Kingdoms extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SatchelHandler(), this);
         getServer().getPluginManager().registerEvents(new CitizenHandler(), this);
         getServer().getPluginManager().registerEvents(new RaceHandler(), this);
-        getServer().getPluginManager().registerEvents(new RaceGUI(), this);
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getServer().getPluginManager().registerEvents(new CraftListener(), this);
         getServer().getPluginManager().registerEvents(new CustomItemMobSpawnUtil(), this);
@@ -147,12 +142,12 @@ public class Kingdoms extends JavaPlugin {
         cIConf = new CustomItemConfig(customitems);
     }
 
-    public FileConfiguration getCustomItemConfig() {
-        return this.customitems;
-    }
-
     public static CustomItemConfig getCIConf() {
         return cIConf;
+    }
+
+    public static RaceConfig getRaceConf() {
+        return raceConf;
     }
 
     public static void setCitizen(Citizen c) {
@@ -169,34 +164,7 @@ public class Kingdoms extends JavaPlugin {
 
 
     public void loadRaces() {
-        for (String raceName : getConfig().getConfigurationSection("Races").getKeys(false)) {
-            HashMap<Integer, PotionEffect[]> effects = new HashMap<Integer, PotionEffect[]>();
-            for (String level : getConfig().getConfigurationSection("Races." + raceName + ".Effects").getKeys(false)) {
-                ArrayList<PotionEffect> potArray = new ArrayList<PotionEffect>();
-                for (String effect : getConfig().getStringList("Races." + raceName + ".Effects." + level)) {
-                    String type = effect.split("\\.")[0];
-                    Integer duration = Integer.parseInt(effect.split("\\.")[1]);
-                    Integer amplifier = Integer.parseInt(effect.split("\\.")[2]);
-                    Boolean particles = Boolean.getBoolean(effect.split("\\.")[3]);
-                    PotionEffect finalEffect = new PotionEffect(PotionEffectType.getByName(type),duration,amplifier,false,particles);
-                    potArray.add(finalEffect);
-                }
-                Integer lv = Integer.parseInt(level);
-                PotionEffect[] finalArray = new PotionEffect[potArray.size()];
-                for (int i = 0; i < potArray.size(); i++) {
-                    finalArray[i] = potArray.get(i);
-                }
-                effects.put(lv, finalArray);
-
-
-            }
-            String material = getConfig().getString("Races." + raceName + ".GUI.Material");
-            Race race = new Race(raceName, effects, Material.getMaterial(material));
-            races.put(raceName, race);
-
-
-        }
-        System.out.println(races);
+        raceConf = new RaceConfig(config);
     }
 
     public static Plugin getPlugin() {

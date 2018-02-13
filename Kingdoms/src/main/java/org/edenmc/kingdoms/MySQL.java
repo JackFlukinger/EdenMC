@@ -42,6 +42,7 @@ public class MySQL {
                     " (uuid VARCHAR(36) not NULL, " +
                     " balance INTEGER, " +
                     " race VARCHAR(16), " +
+                    " racelevel INTEGER, " +
                     " PRIMARY KEY (uuid))";
             createTable.executeUpdate(sql);
         } catch (SQLException e) {

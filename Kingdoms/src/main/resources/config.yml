@@ -14,6 +14,8 @@ Races:
     Human:
         GUI:
             Material: IRON_CHESTPLATE
+            Lore:
+            - "§b+ Luck"
         Effects:
             1:
             - LUCK.1000000.0.false
@@ -22,6 +24,8 @@ Races:
     Dwarf:
         GUI:
             Material: DIAMOND_CHESTPLATE
+            Lore:
+            - "§e+ Efficiency"
         Effects:
             1:
             - FAST_DIGGING.1000000.0.false
@@ -29,7 +33,9 @@ Races:
             - FAST_DIGGING.1000000.1.false
     Orc:
         GUI:
-            Material: CHAINMAIL_CHESTPLATE
+            Material: GOLD_CHESTPLATE
+            Lore:
+            - "§c+ Damage"
         Effects:
             1:
             - INCREASE_DAMAGE.1000000.0.false
@@ -38,6 +44,8 @@ Races:
     Elf:
         GUI:
             Material: LEATHER_CHESTPLATE
+            Lore:
+            - "§a+ Speed"
         Effects:
             1:
             - SPEED.1000000.0.false
