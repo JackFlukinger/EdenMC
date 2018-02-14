@@ -14,40 +14,44 @@ Races:
     Human:
         GUI:
             Material: IRON_CHESTPLATE
+            Color: "§b"
             Lore:
             - "§b+ Luck"
         Effects:
             1:
-            - LUCK.1000000.0.false
+            - "LUCK.1000000.0.false"
             2:
-            - LUCK.1000000.1.false
+            - "LUCK.1000000.1.false"
     Dwarf:
         GUI:
             Material: DIAMOND_CHESTPLATE
+            Color: "§e"
             Lore:
             - "§e+ Efficiency"
         Effects:
             1:
-            - FAST_DIGGING.1000000.0.false
+            - "FAST_DIGGING.1000000.0.false"
             2:
-            - FAST_DIGGING.1000000.1.false
+            - "FAST_DIGGING.1000000.1.false"
     Orc:
         GUI:
             Material: GOLD_CHESTPLATE
+            Color: "§c"
             Lore:
             - "§c+ Damage"
         Effects:
             1:
-            - INCREASE_DAMAGE.1000000.0.false
+            - "INCREASE_DAMAGE.1000000.0.false"
             2:
-            - INCREASE_DAMAGE.1000000.1.false
+            - "INCREASE_DAMAGE.1000000.1.false"
     Elf:
         GUI:
             Material: LEATHER_CHESTPLATE
+            Color: "§a"
             Lore:
             - "§a+ Speed"
         Effects:
             1:
-            - SPEED.1000000.0.false
+            - "SPEED.1000000.0.false"
             2:
-            - SPEED.1000000.1.false
+            - "SPEED.1000000.1.false"

@@ -99,12 +99,14 @@ public class CustomItemListener implements Listener {
     public static Double getDamage(Entity e) {
         if (e instanceof Player | e instanceof Arrow) {
             if (e instanceof Player) {
-                if (Kingdoms.getCIConf().getAffectedItems().contains(((Player) e).getItemInHand().getType().toString())) {
-                    return ((Kingdoms.getCIConf().getLevel(((Player) e).getInventory().getItemInHand()) - 1) * Kingdoms.getCIConf().getMultiplier(((Player) e).getInventory().getItemInHand()));
+                if (Kingdoms.getCIConf().getAffectedItems().contains(((Player) e).getInventory().getItemInMainHand().getType().toString())) {
+                    return ((Kingdoms.getCIConf().getLevel(((Player) e).getInventory().getItemInMainHand()) - 1) * Kingdoms.getCIConf().getMultiplier(((Player) e).getInventory().getItemInHand()));
                 }
             } else if (e instanceof Arrow) {
-                if (Kingdoms.getCIConf().getAffectedItems().contains(((Player) ((Arrow) e).getShooter()).getItemInHand().getType().toString())) {
-                    return ((Kingdoms.getCIConf().getLevel(((Player) ((Arrow) e).getShooter()).getInventory().getItemInHand()) * Kingdoms.getCIConf().getMultiplier(((Player) ((Arrow) e).getShooter()).getInventory().getItemInHand())));
+                if (((Arrow) e).getShooter() instanceof Player) {
+                    if (Kingdoms.getCIConf().getAffectedItems().contains(((Player) ((Arrow) e).getShooter()).getItemInHand().getType().toString())) {
+                        return ((Kingdoms.getCIConf().getLevel(((Player) ((Arrow) e).getShooter()).getInventory().getItemInHand()) * Kingdoms.getCIConf().getMultiplier(((Player) ((Arrow) e).getShooter()).getInventory().getItemInHand())));
+                    }
                 }
             }
         }

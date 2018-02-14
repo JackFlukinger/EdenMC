@@ -1,6 +1,7 @@
 package org.edenmc.kingdoms;
 
 import org.bukkit.Bukkit;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -32,10 +33,11 @@ public class Kingdoms extends JavaPlugin {
     public static HashMap<String,String> mySQL = new HashMap<String,String>();
     public static HashMap<String,HashMap<String,String>> tablesToMake = new HashMap<String,HashMap<String,String>>();
     private static HashMap<String,Citizen> citizens = new HashMap<String,Citizen>();
+    private static HashMap<String,BossBar> progressBars = new HashMap<String,BossBar>();
     private File configf, customitemsf;
     private FileConfiguration config, customitems;
-    public static CustomItemConfig cIConf;
-    public static RaceConfig raceConf;
+    private static CustomItemConfig cIConf;
+    private static RaceConfig raceConf;
 
     public static void main(String[] args) {
 
@@ -162,6 +164,17 @@ public class Kingdoms extends JavaPlugin {
         return citizens.get(name);
     }
 
+    public static void setProgressBars(Citizen c, BossBar progBar) {
+        progressBars.put(c.getName(), progBar);
+    }
+
+    public static BossBar getProgressBar(Citizen c) {
+        return progressBars.get(c.getName());
+    }
+
+    public static void removeProgressBar(String name) {
+        progressBars.remove(name);
+    }
 
     public void loadRaces() {
         raceConf = new RaceConfig(config);

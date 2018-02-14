@@ -2,11 +2,15 @@ package org.edenmc.kingdoms.citizen;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
 import org.edenmc.kingdoms.Kingdoms;
 import org.edenmc.kingdoms.MySQL;
 import org.edenmc.kingdoms.economy.GoldFunctions;
@@ -22,7 +26,8 @@ public class Citizen {
 
     private String name;
     private String race;
-    private int racelevel;
+    private int raceLevel;
+    private int raceEXP;
     private String kingdom;
     private int balance;
     private int rows;
@@ -30,18 +35,30 @@ public class Citizen {
 
     public Citizen() {
         race = null;
-        racelevel = 0;
+        raceLevel = 1;
+        raceEXP = 0;
         name = "";
         balance = 0;
+
 
     }
 
     public Citizen(Player p) {
         name = p.getName();
         race = loadRace(p);
-        racelevel = loadRaceLevel(p);
+        raceLevel = loadRaceLevel(p);
+        raceEXP = loadRaceEXP(p);
         balance = loadBalance(p);
 
+    }
+
+    public void applyPotionEffects() {
+        if (race != null) {
+            for (PotionEffect p : Kingdoms.getRaceConf().getEffects(race, raceLevel)) {
+                Bukkit.broadcastMessage(p.toString());
+                getPlayer().addPotionEffect(p,true);
+            }
+        }
     }
 
     public void chooseRace() {
@@ -80,23 +97,49 @@ public class Citizen {
 
     }
 
+    private int loadRaceEXP(Player p) {
+        String exp = MySQL.getData("players","uuid","raceexp",p.getUniqueId().toString());
+        if (exp == null | exp == "") {
+            String[] data = {getPlayer().getUniqueId().toString(), "0"};
+            String[] columns = {"uuid","raceexp"};
+            MySQL.enterData("players",columns,data);
+            exp = "0";
+        }
+        return Integer.parseInt(exp);
+    }
+
+
     private int loadRaceLevel(Player p) {
         String level = MySQL.getData("players","uuid","racelevel",p.getUniqueId().toString());
         if (level == null | level == "") {
-            String[] data = {getPlayer().getUniqueId().toString(), "0"};
+            String[] data = {getPlayer().getUniqueId().toString(), "1"};
             String[] columns = {"uuid","racelevel"};
             MySQL.enterData("players",columns,data);
-            level = "0";
+            level = "1";
         }
         return Integer.parseInt(level);
     }
 
+    public void setRaceLevel(int lv) {
+        String[] data = {getPlayer().getUniqueId().toString(), String.valueOf(lv)};
+        String[] columns = {"uuid","racelevel"};
+        MySQL.enterData("players",columns,data);
+        raceLevel = lv;
+    }
+
 
     public void setRace(String nr) {
+        if (race != null && race.equals(nr)) {
+            return;
+        }
         race = nr;
         String[] data = {getPlayer().getUniqueId().toString(), nr};
-        String[] columns = {"uuid","race"};
-        MySQL.enterData("players",columns,data);
+        String[] columns = {"uuid", "race"};
+        MySQL.enterData("players", columns, data);
+        setRaceEXP(0);
+        setRaceLevel(1);
+        return;
+
     }
 
     public void setBalance(int b) {
@@ -126,7 +169,39 @@ public class Citizen {
     public String getRace() {return race;}
 
     public int getRacelevel() {
-        return racelevel;
+        return raceLevel;
+    }
+
+    public int getRaceEXP() {
+        return raceEXP;
+    }
+
+    public void setRaceEXP(int exp) {
+        if (exp < Kingdoms.getRaceConf().getLevelTotals()[raceLevel - 1]) {
+            raceEXP = exp;
+            String[] data = {getPlayer().getUniqueId().toString(), String.valueOf(exp)};
+            String[] columns = {"uuid","raceexp"};
+            MySQL.enterData("players",columns,data);
+            if (Kingdoms.getProgressBar(this) != null) {
+                BossBar bar = Kingdoms.getProgressBar(this);
+                bar.setProgress(getRaceEXP() * 1.0 / Kingdoms.getRaceConf().getLevelTotals()[getRacelevel() - 1]);
+            } else {
+                BossBar progressBar = Bukkit.getServer().createBossBar(Kingdoms.getRaceConf().getColor(getRace()) + getRace() + " Level " + getRacelevel(), BarColor.BLUE, BarStyle.SOLID);
+                progressBar.setProgress(getRaceEXP() * 1.0 / Kingdoms.getRaceConf().getLevelTotals()[getRacelevel() - 1]);
+                progressBar.addPlayer(getPlayer());
+                Kingdoms.setProgressBars(this, progressBar);
+            }
+        } else if (raceLevel < 3){
+            raceEXP = exp - Kingdoms.getRaceConf().getLevelTotals()[raceLevel -1];
+            String[] data = {getPlayer().getUniqueId().toString(), String.valueOf(raceEXP)};
+            String[] columns = {"uuid","raceexp"};
+            MySQL.enterData("players",columns,data);
+            setRaceLevel(raceLevel + 1);
+            BossBar bar = Kingdoms.getProgressBar(this);
+            bar.setTitle(Kingdoms.getRaceConf().getColor(getRace()) + getRace() + " Level " + getRacelevel());
+            bar.setProgress(getRaceEXP() * 1.0 / Kingdoms.getRaceConf().getLevelTotals()[getRacelevel() - 1]);
+            applyPotionEffects();
+        }
     }
 
     public int getBalance() {return balance;}
@@ -145,7 +220,12 @@ public class Citizen {
         String[] lore = {"§b" + balance + " Gold Pieces"};
         meta.setLore(Arrays.asList(lore));
         satchel.setItemMeta(meta);
-        getPlayer().getInventory().setItemInOffHand(satchel);
+        Bukkit.getScheduler().runTaskLater(Kingdoms.getPlugin(), new Runnable(){
+            @Override
+            public void run(){
+                getPlayer().getInventory().setItemInOffHand(satchel);
+            }
+        }, 1L);
 
     }
 
