@@ -36,16 +36,29 @@ public class MySQL {
 
     public static void checkTables(Connection con) {
         String playerTable = prefix + "_players";
+        String kingdomTable = prefix + "_kingdoms";
+        String chunkTable = prefix + "_chunks";
         try {
             Statement createTable = con.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS " + playerTable +
+            String players = "CREATE TABLE IF NOT EXISTS " + playerTable +
                     " (uuid VARCHAR(36) not NULL, " +
                     " balance INTEGER, " +
                     " race VARCHAR(16), " +
                     " racelevel INTEGER, " +
                     " raceexp INTEGER, " +
                     " PRIMARY KEY (uuid))";
-            createTable.executeUpdate(sql);
+            String kingdoms = "CREATE TABLE IF NOT EXISTS " + kingdomTable +
+                    " (kingdom VARCHAR(36) not NULL, " +
+                    " owner VARCHAR(36), " +
+                    " PRIMARY KEY (kingdom))";
+            String chunks = "CREATE TABLE IF NOT EXISTS " + chunkTable +
+                    " (chunk VARCHAR(36) not NULL, " +
+                    " kingdom VARCHAR(36), " +
+                    " world VARCHAR(36), " +
+                    " flags VARCHAR(128), " +
+                    " PRIMARY KEY (chunk))";
+            createTable.executeUpdate(players);
+            createTable.executeUpdate(kingdoms);
         } catch (SQLException e) {
             e.printStackTrace();
         }

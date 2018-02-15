@@ -17,6 +17,8 @@ import org.edenmc.kingdoms.economy.GoldCommands;
 import org.edenmc.kingdoms.economy.GoldHandler;
 import org.edenmc.kingdoms.economy.SatchelHandler;
 import org.edenmc.kingdoms.items.ItemCommands;
+import org.edenmc.kingdoms.kingdoms.Kingdom;
+import org.edenmc.kingdoms.kingdoms.KingdomChunk;
 import org.edenmc.kingdoms.race.RaceConfig;
 import org.edenmc.kingdoms.race.RaceHandler;
 
@@ -34,6 +36,8 @@ public class Kingdoms extends JavaPlugin {
     public static HashMap<String,HashMap<String,String>> tablesToMake = new HashMap<String,HashMap<String,String>>();
     private static HashMap<String,Citizen> citizens = new HashMap<String,Citizen>();
     private static HashMap<String,BossBar> progressBars = new HashMap<String,BossBar>();
+    private static HashMap<String,Kingdom> kingdoms = new HashMap<String,Kingdom>();
+    private static HashMap<String,KingdomChunk> chunks = new HashMap<String,KingdomChunk>();
     private File configf, customitemsf;
     private FileConfiguration config, customitems;
     private static CustomItemConfig cIConf;
@@ -56,6 +60,8 @@ public class Kingdoms extends JavaPlugin {
         loadCustomItems();
         loadRaces();
         loadPlayers();
+        loadChunks();
+        loadKingdoms();
     }
 
     @Override
@@ -142,6 +148,14 @@ public class Kingdoms extends JavaPlugin {
     public void loadCustomItems() {
 
         cIConf = new CustomItemConfig(customitems);
+    }
+
+    public void loadChunks() {
+        for ()
+    }
+
+    public void loadKingdoms() {
+
     }
 
     public static CustomItemConfig getCIConf() {

@@ -31,7 +31,6 @@ public class CustomItemListener implements Listener {
                 } else {
                     onHit((LivingEntity) e.getEntity(), e.getDamager(), Kingdoms.getCIConf().getExpPerMobKill((LivingEntity) e.getEntity()));
                 }
-                Bukkit.broadcastMessage("Damage: " + e.getDamage());
             }
         }
     }
@@ -47,7 +46,6 @@ public class CustomItemListener implements Listener {
                     CustomItem ci = new CustomItem(item);
                     int Luck = (int) ((ci.level - 1) * Kingdoms.getCIConf().getMultiplier(item));
                     if (Math.random() * 200 <= Luck) {
-                        Bukkit.broadcastMessage("1");
                         ItemStack ItemToDrop = new ItemStack(getDrop(item));
                         e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), ItemToDrop);
                     }

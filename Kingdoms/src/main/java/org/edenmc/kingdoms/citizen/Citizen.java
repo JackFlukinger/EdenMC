@@ -49,7 +49,24 @@ public class Citizen {
         raceLevel = loadRaceLevel(p);
         raceEXP = loadRaceEXP(p);
         balance = loadBalance(p);
+        kingdom = loadKingdom(p);
 
+    }
+
+    public String loadKingdom(Player p) {
+        String string = MySQL.getData("players","uuid","kingdom",p.getUniqueId().toString());
+        return string;
+    }
+
+    public void setKingdom(String newK) {
+        kingdom = newK;
+        String[] data = {getPlayer().getUniqueId().toString(), newK};
+        String[] columns = {"uuid", "kingdom"};
+        MySQL.enterData("players", columns, data);
+    }
+
+    public String getKingdom() {
+        return kingdom;
     }
 
     public void applyPotionEffects() {
@@ -242,6 +259,9 @@ public class Citizen {
             items[i] = GoldFunctions.getGoldItem(50);
         }
         items[stacks - 1] = GoldFunctions.getGoldItem(balance % 50);
+        if (balance >= 54 * 50) {
+            items[stacks - 1] = GoldFunctions.getGoldItem(50);
+        }
         satchel.setMaxStackSize(50);
         satchel.setStorageContents(items);
         viewer.getPlayer().openInventory(satchel);
@@ -269,6 +289,9 @@ public class Citizen {
                 items[i] = GoldFunctions.getGoldItem(50);
             }
             items[stacks - 1] = GoldFunctions.getGoldItem(balance % 50);
+            if (balance >= 54 * 50) {
+                items[stacks - 1] = GoldFunctions.getGoldItem(50);
+            }
             satchel.setMaxStackSize(50);
             satchel.setStorageContents(items);
             viewer.getPlayer().openInventory(satchel);
@@ -278,7 +301,9 @@ public class Citizen {
 
     private int getStacks(int balance) {
         int stack = (balance / 50) + 1;
-
+        if (stack > 54) {
+            stack = 54;
+        }
         return stack;
 
     }

@@ -1,7 +1,7 @@
 package org.edenmc.kingdoms.kingdoms;
 
-import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.edenmc.kingdoms.MySQL;
 import org.edenmc.kingdoms.citizen.Citizen;
 
 import java.util.ArrayList;
@@ -12,14 +12,24 @@ import java.util.UUID;
  */
 public class Kingdom implements Traversable{
 
-    String name;
+    String kingdom;
     String owner;
     ArrayList<UUID> residents;
-    ArrayList<Chunk> chunks;
+    ArrayList<KingdomChunk> chunks;
 
 
-    public Kingdom() {
+    public Kingdom(String name) {
+        kingdom = name;
+        owner = loadOwner();
+        chunks = loadChunks();
+    }
 
+    private String loadOwner() {
+        String string = MySQL.getData("kingdoms","kingdom","owner",kingdom);
+        return string;
+    }
+
+    private ArrayList<KingdomChunk> loadChunks() {
 
     }
 
@@ -38,12 +48,12 @@ public class Kingdom implements Traversable{
         return false;
     }
 
-    public ArrayList<Chunk> getChunks() {
+    public ArrayList<KingdomChunk> getChunks() {
         return chunks;
     }
 
     public String getName() {
-        return name;
+        return kingdom;
     }
 
     public String getOwner() {
