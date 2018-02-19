@@ -4,6 +4,7 @@ import com.mysql.jdbc.CommunicationsException;
 import org.bukkit.Bukkit;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by Jack on 6/22/2017.
@@ -22,7 +23,7 @@ public class MySQL {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/" + database,username,password);
-            Bukkit.getServer().broadcastMessage("Connected to MySQL database!");
+            System.out.println("Connected to MySQL database!");
         }catch(Exception e) {
             System.out.println(e);
             Bukkit.getServer().broadcastMessage("Kingdoms could not connect to the MySQL server. Disabling plugin.");
@@ -46,19 +47,25 @@ public class MySQL {
                     " race VARCHAR(16), " +
                     " racelevel INTEGER, " +
                     " raceexp INTEGER, " +
+                    " kingdom VARCHAR(36), " +
                     " PRIMARY KEY (uuid))";
             String kingdoms = "CREATE TABLE IF NOT EXISTS " + kingdomTable +
                     " (kingdom VARCHAR(36) not NULL, " +
                     " owner VARCHAR(36), " +
+                    " wardens VARCHAR(10000), " +
+                    " residents VARCHAR(10000), " +
+                    " flags VARCHAR(128), " +
                     " PRIMARY KEY (kingdom))";
             String chunks = "CREATE TABLE IF NOT EXISTS " + chunkTable +
                     " (chunk VARCHAR(36) not NULL, " +
                     " kingdom VARCHAR(36), " +
                     " world VARCHAR(36), " +
+                    " owner VARCHAR(36), " +
                     " flags VARCHAR(128), " +
                     " PRIMARY KEY (chunk))";
             createTable.executeUpdate(players);
             createTable.executeUpdate(kingdoms);
+            createTable.executeUpdate(chunks);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,6 +148,36 @@ public class MySQL {
 
         }
         return "";
+    }
+
+    public static ArrayList<String> getAllRows(String table, String column) {
+        try {
+            if (con.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        table = prefix + "_" + table;
+        try {
+            Statement statement = con.createStatement();
+            String query = "SELECT " + column + " FROM " + table;
+            ResultSet rs = statement.executeQuery(query);
+            ArrayList<String> rows = new ArrayList<String>();
+            if (rs.next()) {
+                if (rs.getObject(1) != null) {
+                    rows.add((String) rs.getObject(1));
+                }
+            }
+            return rows;
+        } catch (CommunicationsException e) {
+            e.printStackTrace();
+            connect();
+            return getAllRows(table, column);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<String>();
     }
 
     public static void terminate() {

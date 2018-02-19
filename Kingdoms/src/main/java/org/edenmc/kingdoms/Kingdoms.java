@@ -1,6 +1,9 @@
 package org.edenmc.kingdoms;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,6 +22,8 @@ import org.edenmc.kingdoms.economy.SatchelHandler;
 import org.edenmc.kingdoms.items.ItemCommands;
 import org.edenmc.kingdoms.kingdoms.Kingdom;
 import org.edenmc.kingdoms.kingdoms.KingdomChunk;
+import org.edenmc.kingdoms.kingdoms.KingdomCommands;
+import org.edenmc.kingdoms.kingdoms.MoveListener;
 import org.edenmc.kingdoms.race.RaceConfig;
 import org.edenmc.kingdoms.race.RaceHandler;
 
@@ -37,7 +42,7 @@ public class Kingdoms extends JavaPlugin {
     private static HashMap<String,Citizen> citizens = new HashMap<String,Citizen>();
     private static HashMap<String,BossBar> progressBars = new HashMap<String,BossBar>();
     private static HashMap<String,Kingdom> kingdoms = new HashMap<String,Kingdom>();
-    private static HashMap<String,KingdomChunk> chunks = new HashMap<String,KingdomChunk>();
+    private static HashMap<String, KingdomChunk> chunks = new HashMap<String, KingdomChunk>();
     private File configf, customitemsf;
     private FileConfiguration config, customitems;
     private static CustomItemConfig cIConf;
@@ -78,6 +83,8 @@ public class Kingdoms extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CustomItemListener(), this);
         getServer().getPluginManager().registerEvents(new CraftListener(), this);
         getServer().getPluginManager().registerEvents(new CustomItemMobSpawnUtil(), this);
+        getServer().getPluginManager().registerEvents(new MoveListener(), this);
+
 
 
     }
@@ -86,6 +93,7 @@ public class Kingdoms extends JavaPlugin {
     public void registerCommands() {
         getCommand("items").setExecutor(new ItemCommands());
         getCommand("gold").setExecutor(new GoldCommands());
+        getCommand("kingdom").setExecutor(new KingdomCommands());
 
     }
 
@@ -151,11 +159,78 @@ public class Kingdoms extends JavaPlugin {
     }
 
     public void loadChunks() {
-        for ()
+        for (String row : MySQL.getAllRows("chunks", "chunk")) {
+            World world = Bukkit.getWorld(MySQL.getData("chunks", "chunk", "world", row));
+            Chunk chunk = world.getChunkAt(Integer.parseInt(row.split(" ")[0]), Integer.parseInt(row.split(" ")[1]));
+            String kingdom = MySQL.getData("chunks", "chunk", "kingdom", row);
+            ArrayList<String> flags = new ArrayList<String>();
+            for (String flag : MySQL.getData("chunks", "chunk", "flags", row).split(",")) {
+                flags.add(flag);
+            }
+            String owner = MySQL.getData("chunks", "chunk", "owner", row);
+            KingdomChunk ch = new KingdomChunk(chunk, kingdom, owner, flags);
+            chunks.put(ch.getChunk().getX() + " " + ch.getChunk().getZ(), ch);
+        }
+    }
+
+    public static void addChunk(KingdomChunk ck) {
+        chunks.put(ck.getChunk().getX() + " " + ck.getChunk().getZ(), ck);
+        String flagString = "";
+        for (String flag : ck.getFlags()) {
+            flagString = flagString + flag + ",";
+        }
+        if (flagString.length() > 0) {
+            flagString.substring(0, flagString.length() - 1);
+        }
+        String[] data = {ck.getChunk().getX() + " " + ck.getChunk().getZ(), ck.getKingdom(), ck.getWorld().getName(), flagString};
+        String[] columns = {"chunk", "kingdom", "world", "flags"};
+        MySQL.enterData("chunks", columns, data);
+    }
+
+    public static HashMap<String, KingdomChunk> getChunks() {
+        return chunks;
     }
 
     public void loadKingdoms() {
+        for (String kingdom : MySQL.getAllRows("kingdoms", "kingdom")) {
+            ArrayList<KingdomChunk> chs = new ArrayList<KingdomChunk>();
+            for (KingdomChunk ch : chunks.values()) {
+                if (ch.getKingdom().equals(kingdom)) {
+                    chs.add(ch);
+                }
+            }
+            ArrayList<String> residents = new ArrayList<String>();
+            for (String res : MySQL.getData("kingdoms", "kingdom", "residents", kingdom).split(",")) {
+                residents.add(res);
+            }
+            ArrayList<String> wardens = new ArrayList<String>();
+            for (String war : MySQL.getData("kingdoms", "kingdom", "wardens", kingdom).split(",")) {
+                wardens.add(war);
+            }
+            String owner = MySQL.getData("kingdoms", "kingdom", "owner", kingdom);
+            ArrayList<String> flags = new ArrayList<String>();
+            for (String flag : MySQL.getData("kingdoms", "kingdom", "flags", kingdom).split(",")) {
+                flags.add(flag);
+            }
+            Kingdom k = new Kingdom(kingdom, owner, chs, wardens, residents, flags);
+            setKingdom(k);
+        }
+    }
 
+    public static boolean isKingdomNear(Chunk ch) {
+        for (KingdomChunk chunk : chunks.values()) {
+            if (new Location(ch.getWorld(), ch.getX(), 0, ch.getZ()).distance(new Location(chunk.getChunk().getWorld(), chunk.getChunk().getX(), 0, chunk.getChunk().getZ())) < 15) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isNextToKingdom(Chunk ch) {
+        if (getChunks().keySet().contains((ch.getX() + 1) + " " + ch.getZ()) | getChunks().keySet().contains((ch.getX() - 1) + " " + ch.getZ()) | getChunks().keySet().contains(ch.getX() + " " + (ch.getZ() + 1)) | getChunks().keySet().contains(ch.getX() + " " + (ch.getZ() - 1))) {
+            return true;
+        }
+        return false;
     }
 
     public static CustomItemConfig getCIConf() {
@@ -177,6 +252,12 @@ public class Kingdoms extends JavaPlugin {
     public static Citizen getCitizen(String name) {
         return citizens.get(name);
     }
+
+    public static Kingdom getKingdom(String name) { return kingdoms.get(name);}
+
+    public static void setKingdom(Kingdom k) { kingdoms.put(k.getName(), k);}
+
+    public static void removeKingdom(Kingdom k) {kingdoms.remove(k.getName());}
 
     public static void setProgressBars(Citizen c, BossBar progBar) {
         progressBars.put(c.getName(), progBar);

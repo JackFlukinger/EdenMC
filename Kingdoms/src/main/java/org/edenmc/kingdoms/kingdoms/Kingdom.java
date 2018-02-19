@@ -1,11 +1,12 @@
 package org.edenmc.kingdoms.kingdoms;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.edenmc.kingdoms.Kingdoms;
 import org.edenmc.kingdoms.MySQL;
 import org.edenmc.kingdoms.citizen.Citizen;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * Created by Jack on 2/11/2018.
@@ -14,23 +15,32 @@ public class Kingdom implements Traversable{
 
     String kingdom;
     String owner;
-    ArrayList<UUID> residents;
+    ArrayList<String> residents;
+    ArrayList<String> wardens;
+    ArrayList<String> flags;
     ArrayList<KingdomChunk> chunks;
 
 
-    public Kingdom(String name) {
+    public Kingdom(String name, String ow, ArrayList<KingdomChunk> ch, ArrayList<String> wr, ArrayList<String> res, ArrayList<String> fl) {
         kingdom = name;
-        owner = loadOwner();
-        chunks = loadChunks();
+        owner = ow;
+        chunks = ch;
+        wardens = wr;
+        residents = res;
+        flags = fl;
     }
 
-    private String loadOwner() {
-        String string = MySQL.getData("kingdoms","kingdom","owner",kingdom);
-        return string;
-    }
-
-    private ArrayList<KingdomChunk> loadChunks() {
-
+    public void addResident(Player p) {
+        residents.add(p.getUniqueId().toString());
+        Kingdoms.getCitizen(p.getName()).setKingdom(kingdom);
+        String resString = "";
+        for (String res : residents) {
+            resString = resString + res + ",";
+        }
+        resString.substring(0,resString.length() - 1);
+        String[] data = {kingdom, resString};
+        String[] columns = {"kingdom", "residents"};
+        MySQL.enterData("kingdoms", columns, data);
     }
 
     @Override
@@ -56,12 +66,24 @@ public class Kingdom implements Traversable{
         return kingdom;
     }
 
+    public void addChunk(KingdomChunk ch) {
+        chunks.add(ch);
+    }
+
+    public void removeChunk(KingdomChunk ch) {
+        chunks.remove(ch);
+    }
+
     public String getOwner() {
         return owner;
     }
 
-    public ArrayList<UUID> getResidents() {
+    public ArrayList<String> getResidents() {
         return residents;
+    }
+
+    public ArrayList<String> getWardens() {
+        return wardens;
     }
 
 }

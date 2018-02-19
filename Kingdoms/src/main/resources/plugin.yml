@@ -10,3 +10,5 @@ commands:
     permission: items.*
   gold:
     permission: gold.*
+  kingdom:
+    permission: kingdom.*

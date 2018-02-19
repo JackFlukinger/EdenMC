@@ -1,9 +1,7 @@
 package org.edenmc.kingdoms.kingdoms;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.edenmc.kingdoms.MySQL;
 
 import java.util.ArrayList;
 
@@ -14,31 +12,28 @@ public class KingdomChunk {
     Chunk chunk;
     World world;
     String kingdom;
+    String owner;
     ArrayList<String> flags = new ArrayList<String>();
 
-    public KingdomChunk(String ck) {
-        world = loadWorld();
-        chunk = world.getChunkAt(Integer.parseInt(ck.split(" ")[0]), Integer.parseInt(ck.split(" ")[1]));
-        kingdom = loadKingdom();
-        flags = loadFlags();
+    public KingdomChunk(Chunk ck, String kg, String ow, ArrayList<String> fl) {
+        world = ck.getWorld();
+        chunk = ck;
+        kingdom = kg;
+        owner = ow;
+        flags = fl;
 
     }
 
-    private World loadWorld() {
-        return Bukkit.getServer().getWorld(MySQL.getData("chunks", "chunk", "world", String.valueOf(chunk.getX()) + " " + String.valueOf(chunk.getZ())));
+    public String getKingdom() {
+        return kingdom;
     }
 
-    private String loadKingdom() {
-        return MySQL.getData("chunks", "chunk", "kingdom", String.valueOf(chunk.getX()) + " " + String.valueOf(chunk.getZ()));
+    public String getOwner() {
+        return owner;
     }
 
-    private ArrayList<String> loadFlags() {
-        String flagString = MySQL.getData("chunks", "chunk", "flags", String.valueOf(chunk.getX()) +" " + String.valueOf(chunk.getZ()));
-        ArrayList<String> flagArray = new ArrayList<String>();
-        for (String flag : flagString.split(",")) {
-            flagArray.add(flag);
-        }
-        return flagArray;
+    public ArrayList<String> getFlags() {
+        return flags;
     }
 
     public World getWorld() {
