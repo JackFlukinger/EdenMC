@@ -94,6 +94,10 @@ public class Kingdoms extends JavaPlugin {
         getCommand("items").setExecutor(new ItemCommands());
         getCommand("gold").setExecutor(new GoldCommands());
         getCommand("kingdom").setExecutor(new KingdomCommands());
+        getCommand("accept").setExecutor(new KingdomCommands());
+        getCommand("deny").setExecutor(new KingdomCommands());
+        getCommand("chunk").setExecutor(new KingdomCommands());
+
 
     }
 
@@ -187,6 +191,10 @@ public class Kingdoms extends JavaPlugin {
         MySQL.enterData("chunks", columns, data);
     }
 
+    public static void removeChunk(KingdomChunk chunk) {
+        chunks.remove(chunk.getChunk().getX() + " " + chunk.getChunk().getZ());
+    }
+
     public static HashMap<String, KingdomChunk> getChunks() {
         return chunks;
     }
@@ -201,21 +209,28 @@ public class Kingdoms extends JavaPlugin {
             }
             ArrayList<String> residents = new ArrayList<String>();
             for (String res : MySQL.getData("kingdoms", "kingdom", "residents", kingdom).split(",")) {
-                residents.add(res);
+                if (res != null && !res.equals("")) {
+                    residents.add(res);
+                }
             }
             ArrayList<String> wardens = new ArrayList<String>();
             for (String war : MySQL.getData("kingdoms", "kingdom", "wardens", kingdom).split(",")) {
-                wardens.add(war);
+                if (war != null && !war.equals("")) {
+                    wardens.add(war);
+                }
             }
             String owner = MySQL.getData("kingdoms", "kingdom", "owner", kingdom);
             ArrayList<String> flags = new ArrayList<String>();
             for (String flag : MySQL.getData("kingdoms", "kingdom", "flags", kingdom).split(",")) {
-                flags.add(flag);
+                if (flag != null && !flag.equals("")) {
+                    flags.add(flag);
+                }
             }
             Kingdom k = new Kingdom(kingdom, owner, chs, wardens, residents, flags);
             setKingdom(k);
         }
     }
+
 
     public static boolean isKingdomNear(Chunk ch) {
         for (KingdomChunk chunk : chunks.values()) {
@@ -254,6 +269,14 @@ public class Kingdoms extends JavaPlugin {
     }
 
     public static Kingdom getKingdom(String name) { return kingdoms.get(name);}
+
+    public static ArrayList<String> getKingdoms() {
+        ArrayList<String> kingdomList = new ArrayList<String>();
+        for (String k : kingdoms.keySet()) {
+            kingdomList.add(k);
+        }
+        return kingdomList;
+    }
 
     public static void setKingdom(Kingdom k) { kingdoms.put(k.getName(), k);}
 

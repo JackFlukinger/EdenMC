@@ -164,7 +164,7 @@ public class MySQL {
             String query = "SELECT " + column + " FROM " + table;
             ResultSet rs = statement.executeQuery(query);
             ArrayList<String> rows = new ArrayList<String>();
-            if (rs.next()) {
+            while (rs.next()) {
                 if (rs.getObject(1) != null) {
                     rows.add((String) rs.getObject(1));
                 }
@@ -178,6 +178,31 @@ public class MySQL {
             e.printStackTrace();
         }
         return new ArrayList<String>();
+    }
+
+    public static void delete(String table, String column, String condition) {
+        try {
+            if (con.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        table = prefix + "_" + table;
+        try {
+            Statement statement = con.createStatement();
+            String sql = "DELETE FROM "+ table + " WHERE " + column + " = '" + condition + "' ";
+            statement.executeUpdate(sql);
+        } catch (CommunicationsException e) {
+            System.out.println(e);
+            connect();
+            delete(table,column,condition);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     public static void terminate() {

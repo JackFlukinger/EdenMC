@@ -1,5 +1,6 @@
 package org.edenmc.kingdoms.kingdoms;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.edenmc.kingdoms.Kingdoms;
@@ -37,10 +38,53 @@ public class Kingdom implements Traversable{
         for (String res : residents) {
             resString = resString + res + ",";
         }
-        resString.substring(0,resString.length() - 1);
+        resString = resString.substring(0,resString.length() - 1);
         String[] data = {kingdom, resString};
         String[] columns = {"kingdom", "residents"};
         MySQL.enterData("kingdoms", columns, data);
+    }
+
+    public void removeResident(String uuid) {
+        residents.remove(uuid);
+        String resString = "";
+        for (String res : residents) {
+            resString = resString + res + ",";
+        }
+        resString = resString.substring(0,resString.length() - 1);
+        String[] data = {kingdom, resString};
+        String[] columns = {"kingdom", "residents"};
+        MySQL.enterData("kingdoms", columns, data);
+    }
+
+    public void removeWarden(String uuid) {
+        wardens.remove(uuid);
+        String warString = "";
+        for (String war : wardens) {
+            warString = warString + war + ",";
+        }
+        warString = warString.substring(0,warString.length() - 1);
+        String[] data = {kingdom, warString};
+        String[] columns = {"kingdom", "wardens"};
+        MySQL.enterData("kingdoms", columns, data);
+    }
+
+    public void delete() {
+        Kingdoms.removeKingdom(this);
+        for (KingdomChunk c : chunks) {
+            Kingdoms.removeChunk(c);
+        }
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (Kingdoms.getCitizen(p.getName()).getKingdom() != null && Kingdoms.getCitizen(p.getName()).getKingdom().equals(kingdom)) {
+                Kingdoms.getCitizen(p.getName()).setKingdom("");
+            }
+        }
+        for (String uuid : getResidents()) {
+            String[] data = {uuid, ""};
+            String[] columns = {"uuid", "kingdom"};
+            MySQL.enterData("players", columns, data);
+        }
+        MySQL.delete("kingdoms", "kingdom", getName());
+        MySQL.delete("chunks", "kingdom", getName());
     }
 
     @Override
@@ -86,4 +130,7 @@ public class Kingdom implements Traversable{
         return wardens;
     }
 
+    public ArrayList<String> getFlags() {
+        return flags;
+    }
 }

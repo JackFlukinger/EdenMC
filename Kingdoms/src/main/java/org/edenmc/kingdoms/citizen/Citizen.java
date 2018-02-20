@@ -55,6 +55,9 @@ public class Citizen {
 
     public String loadKingdom(Player p) {
         String string = MySQL.getData("players","uuid","kingdom",p.getUniqueId().toString());
+        if (string == null) {
+            string = "";
+        }
         return string;
     }
 

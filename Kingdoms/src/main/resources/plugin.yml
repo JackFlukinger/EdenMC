@@ -11,4 +11,10 @@ commands:
   gold:
     permission: gold.*
   kingdom:
-    permission: kingdom.*
+    description: Kingdom command prefix
+  chunk:
+    description: Chunk command prefix
+  accept:
+    description: Accept invitation
+  deny:
+    description: Decline invitation
