@@ -1,6 +1,7 @@
 package org.edenmc.kingdoms.kingdoms;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,6 +21,7 @@ public class KingdomCommands implements CommandExecutor {
     static HashMap<String, String> pendingInvites = new HashMap<String,String>();
     static HashMap<String, String> pendingLeaves = new HashMap<String, String>();
     static HashMap<String, String> pendingDeletes = new HashMap<String, String>();
+    static HashMap<String, String> pendingStepDowns = new HashMap<String,String>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -83,6 +85,31 @@ public class KingdomCommands implements CommandExecutor {
                     Kingdoms.addChunk(ch);
                     Kingdoms.getKingdom(c.getKingdom()).addChunk(ch);
                     p.sendMessage("§bChunk claimed!");
+                } else if (args[0].equalsIgnoreCase("unclaim")) {
+                    if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                        p.sendMessage("§bYou must be the owner or warden of a kingdom to unclaim land.");
+                        return true;
+                    }
+                    if (!Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(p.getUniqueId().toString()) && !Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                        p.sendMessage("§bYou must be the owner or warden of a kingdom to unclaim land.");
+                        return true;
+                    }
+                    if (!Kingdoms.getChunks().containsKey(p.getLocation().getChunk().getX() + " " + p.getLocation().getChunk().getZ())) {
+                        p.sendMessage("§bThis chunk is not the property of your kingdom.");
+                        return true;
+                    }
+                    if (!Kingdoms.isNextToWilderness(p.getLocation().getChunk())) {
+                        p.sendMessage("§bYou must unclaim land on the border of your kingdom.");
+                        return true;
+                    }
+                    if (Kingdoms.getKingdom(c.getKingdom()).getChunks().size() < 2) {
+                        p.sendMessage("§bYou must have at least one claimed chunk.");
+                        return true;
+                    }
+                    KingdomChunk ch = Kingdoms.getChunks().get(p.getLocation().getChunk().getX() + " " + p.getLocation().getChunk().getZ());
+                    Kingdoms.removeChunk(ch);
+                    Kingdoms.getKingdom(c.getKingdom()).removeChunk(ch);
+                    p.sendMessage("§bChunk unclaimed!");
                 } else if (args[0].equalsIgnoreCase("add")) {
                     if (c.getKingdom() == null || c.getKingdom().equals("")) {
                         p.sendMessage("§bYou must be the owner or warden of a kingdom to add a player.");
@@ -193,8 +220,103 @@ public class KingdomCommands implements CommandExecutor {
                         }
                     }, 300L);
                 } else if (args[0].equalsIgnoreCase("promote")) {
+                    if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                        p.sendMessage("§bYou must be the owner of a kingdom to promote a player.");
+                        return true;
+                    }
+                    if (!Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                        p.sendMessage("§bYou must be the owner of a kingdom to promote a player.");
+                        return true;
+                    }
+                    if (args.length != 2) {
+                        p.sendMessage("§b/kingdom promote [player]");
+                        return true;
+                    }
+                    if (Bukkit.getPlayer(args[1]) == null) {
+                        p.sendMessage("§bPlayer must be online to be promoted.");
+                        return true;
+                    }
+                    if (Bukkit.getPlayer(args[1]).getName().equals(p.getName())) {
+                        p.sendMessage("§bYou cannot promote yourself!");
+                        return true;
+                    }
+                    Player promoted = Bukkit.getPlayer(args[1]);
+                    Citizen cit = Kingdoms.getCitizen(promoted.getName());
+                    if (!cit.getKingdom().equals(c.getKingdom())) {
+                        p.sendMessage("§bPlayer must be in your kingdom.");
+                        return true;
+                    }
+                    String cRank = "Warden";
+                    if (Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                        cRank = "Owner";
+                    }
+                    String citRank = "Resident";
+                    if (Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                        citRank = "Owner";
+                    } else if (Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(p.getUniqueId().toString())) {
+                        citRank = "Warden";
+                    }
+                    if (cRank.equals("Owner") && citRank.equals("Warden")) {
+                        p.sendMessage("§bDo you want to step down as Owner of your Kingdom?");
+                        p.sendMessage("§bYou have 15 seconds to /accept or /deny!");
+                        pendingStepDowns.put(p.getName(), promoted.getName());
+                        Bukkit.getScheduler().runTaskLater(Kingdoms.getPlugin(), new Runnable(){
+                            @Override
+                            public void run(){
+                                pendingStepDowns.remove(p.getName());
+                            }
+                        }, 300L);
+                        return true;
+                    } else if (cRank.equals("Owner") && citRank.equals("Resident")) {
+                        Kingdoms.getKingdom(c.getKingdom()).addWarden(promoted.getUniqueId().toString());
+                        promoted.sendMessage("§bYou have been promoted to Warden!");
+                        p.sendMessage("§bYou have promoted " + promoted.getName() + " to Warden!");
+                    }
 
-                } else if (args[0].equalsIgnoreCase("flag")) {
+                } else if (args[0].equalsIgnoreCase("demote")) {
+                    if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                        p.sendMessage("§bYou must be the owner of a kingdom to demote a player.");
+                        return true;
+                    }
+                    if (!Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                        p.sendMessage("§bYou must be the owner of a kingdom to demote a player.");
+                        return true;
+                    }
+                    if (args.length != 2) {
+                        p.sendMessage("§b/kingdom demote [player]");
+                        return true;
+                    }
+                    if (Bukkit.getPlayer(args[1]) != null) {
+                        Player demoted = Bukkit.getPlayer(args[1]);
+                        Citizen cit = Kingdoms.getCitizen(demoted.getName());
+                        if (Bukkit.getPlayer(args[1]).getName().equals(p.getName())) {
+                            p.sendMessage("§bYou cannot demote yourself!");
+                            return true;
+                        }
+                        if (!cit.getKingdom().equals(c.getKingdom())) {
+                            p.sendMessage("§bPlayer must be in your kingdom.");
+                            return true;
+                        }
+                        if (!Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(demoted.getUniqueId().toString())) {
+                            p.sendMessage("§bCannot demote a resident.");
+                            return true;
+                        }
+                        Kingdoms.getKingdom(c.getKingdom()).removeWarden(demoted.getUniqueId().toString());
+                        p.sendMessage("§bSuccessfully demoted " + demoted.getName());
+                        demoted.sendMessage("§bYou were demoted.");
+                    } else {
+                        for (String uuid : Kingdoms.getKingdom(c.getKingdom()).getWardens()) {
+                            if (args[1].equals(Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getName())) {
+                                OfflinePlayer demoted = Bukkit.getOfflinePlayer(UUID.fromString(uuid));
+                                Kingdoms.getKingdom(c.getKingdom()).removeWarden(demoted.getUniqueId().toString());
+                                p.sendMessage("§bSuccessfully demoted " + demoted.getName());
+                                return true;
+                            }
+                        }
+                        p.sendMessage("§b" + args[1] + " is not a Warden in your kingdom.");
+                        return true;
+                    }
+                }  else if (args[0].equalsIgnoreCase("flag")) {
 
                 } else if (args[0].equalsIgnoreCase("info")) {
                     if (args.length < 2) {
@@ -290,6 +412,8 @@ public class KingdomCommands implements CommandExecutor {
                     p.sendMessage("§b/kingdom claim §9- Claim current chunk");
                     p.sendMessage("§b/kingdom add [player] §9- Invite [player] to your kingdom");
                     p.sendMessage("§b/kingdom remove [player] §9- Remove [player] from your kingdom");
+                    p.sendMessage("§b/kingdom promote [resident] §9- Promote resident to warden");
+                    p.sendMessage("§b/kingdom demote [warden] §9- Demote a warden");
                     p.sendMessage("§b/kingdom leave §9- Leave your kingdom");
                     p.sendMessage("§b/kingdom delete §9- Delete your kingdom");
                     p.sendMessage("§b/kingdom info [kingdom] §9- Print information about [kingdom]");
@@ -302,6 +426,8 @@ public class KingdomCommands implements CommandExecutor {
                 p.sendMessage("§b/kingdom claim §9- Claim current chunk");
                 p.sendMessage("§b/kingdom add [player] §9- Invite [player] to your kingdom");
                 p.sendMessage("§b/kingdom remove [player] §9- Remove [player] from your kingdom");
+                p.sendMessage("§b/kingdom promote [resident] §9- Promote resident to warden");
+                p.sendMessage("§b/kingdom demote [warden] §9- Demote a warden");
                 p.sendMessage("§b/kingdom leave §9- Leave your kingdom");
                 p.sendMessage("§b/kingdom delete §9- Delete your kingdom");
                 p.sendMessage("§b/kingdom info [kingdom] §9- Print information about [kingdom]");
@@ -312,10 +438,33 @@ public class KingdomCommands implements CommandExecutor {
         } else if (sender instanceof Player && cmd.getName().equalsIgnoreCase("accept") ) {
             Player p = (Player) sender;
             Citizen c = Kingdoms.getCitizen(p.getName());
-            if (pendingDeletes.containsKey(p.getName())) {
+            if (pendingStepDowns.containsKey(p.getName())) {
+                if (Bukkit.getPlayer(pendingStepDowns.get(p.getName())) != null) {
+                    Player promoted = Bukkit.getPlayer(pendingStepDowns.get(p.getName()));
+                    Kingdom k = Kingdoms.getKingdom(c.getKingdom());
+                    if (k.getOwner().equals(p.getUniqueId().toString()) && k.getWardens().contains(promoted.getUniqueId().toString())) {
+                        k.setOwner(promoted.getUniqueId().toString());
+                        k.addWarden(p.getUniqueId().toString());
+                        k.removeWarden(promoted.getUniqueId().toString());
+                        promoted.sendMessage("§bYou have been promoted to Owner of " + c.getKingdom());
+                        p.sendMessage("§bYou have been demoted to Warden.");
+                        return true;
+                    }
+                } else {
+                    OfflinePlayer promoted = Bukkit.getPlayer(pendingStepDowns.get(p.getName()));
+                    Kingdom k = Kingdoms.getKingdom(c.getKingdom());
+                    if (k.getOwner().equals(p.getUniqueId().toString()) && k.getWardens().contains(promoted.getUniqueId().toString())) {
+                        k.setOwner(promoted.getUniqueId().toString());
+                        k.addWarden(p.getUniqueId().toString());
+                        k.removeWarden(promoted.getUniqueId().toString());
+                        p.sendMessage("§bYou have been demoted to Warden.");
+                        return true;
+                    }
+                }
+            } else if (pendingDeletes.containsKey(p.getName())) {
                 Kingdoms.getKingdom(c.getKingdom()).delete();
                 c.setKingdom("");
-                p.sendMessage("§bYou have irreversibly deleted your kingdom.");
+                p.sendMessage("§bYou have deleted your kingdom.");
                 pendingDeletes.remove(p.getName());
                 return true;
             } else if (pendingLeaves.containsKey(p.getName())) {

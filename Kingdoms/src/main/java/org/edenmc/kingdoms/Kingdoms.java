@@ -191,9 +191,12 @@ public class Kingdoms extends JavaPlugin {
         MySQL.enterData("chunks", columns, data);
     }
 
-    public static void removeChunk(KingdomChunk chunk) {
-        chunks.remove(chunk.getChunk().getX() + " " + chunk.getChunk().getZ());
+    public static void removeChunk(KingdomChunk ch) {
+        chunks.remove(ch.getChunk().getX() + " " + ch.getChunk().getZ());
+        MySQL.delete("chunks","chunk",ch.getChunk().getX() + " " + ch.getChunk().getZ());
     }
+
+
 
     public static HashMap<String, KingdomChunk> getChunks() {
         return chunks;
@@ -243,6 +246,13 @@ public class Kingdoms extends JavaPlugin {
 
     public static boolean isNextToKingdom(Chunk ch) {
         if (getChunks().keySet().contains((ch.getX() + 1) + " " + ch.getZ()) | getChunks().keySet().contains((ch.getX() - 1) + " " + ch.getZ()) | getChunks().keySet().contains(ch.getX() + " " + (ch.getZ() + 1)) | getChunks().keySet().contains(ch.getX() + " " + (ch.getZ() - 1))) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNextToWilderness(Chunk ch) {
+        if (!getChunks().keySet().contains((ch.getX() + 1) + " " + ch.getZ()) | !getChunks().keySet().contains((ch.getX() - 1) + " " + ch.getZ()) | !getChunks().keySet().contains(ch.getX() + " " + (ch.getZ() + 1)) | !getChunks().keySet().contains(ch.getX() + " " + (ch.getZ() - 1))) {
             return true;
         }
         return false;

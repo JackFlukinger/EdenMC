@@ -56,6 +56,26 @@ public class Kingdom implements Traversable{
         MySQL.enterData("kingdoms", columns, data);
     }
 
+    public void setOwner(String uuid) {
+        owner = uuid;
+        String[] data = {kingdom, uuid};
+        String[] columns = {"kingdom", "owner"};
+        MySQL.enterData("kingdoms", columns, data);
+    }
+
+    public void addWarden(String uuid) {
+        wardens.add(uuid);
+        String warString = "";
+        for (String war : wardens) {
+            warString = warString + war + ",";
+        }
+        warString = warString.substring(0,warString.length() - 1);
+        String[] data = {kingdom, warString};
+        String[] columns = {"kingdom", "wardens"};
+        MySQL.enterData("kingdoms", columns, data);
+
+    }
+
     public void removeWarden(String uuid) {
         wardens.remove(uuid);
         String warString = "";
