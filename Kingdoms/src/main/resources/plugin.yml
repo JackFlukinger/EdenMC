@@ -12,6 +12,7 @@ commands:
     permission: gold.*
   kingdom:
     description: Kingdom command prefix
+    aliases: k
   chunk:
     description: Chunk command prefix
   accept:

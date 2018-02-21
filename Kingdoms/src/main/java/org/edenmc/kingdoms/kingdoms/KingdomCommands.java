@@ -316,7 +316,42 @@ public class KingdomCommands implements CommandExecutor {
                         p.sendMessage("§b" + args[1] + " is not a Warden in your kingdom.");
                         return true;
                     }
+                    //Todo Implement /kingdom flag
                 }  else if (args[0].equalsIgnoreCase("flag")) {
+                    if (args.length < 3) {
+                        p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open]");
+                        return true;
+                    }
+                    if (!args[1].equals("add") && !args[1].equals("remove")) {
+                        p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open]");
+                        return true;
+                    }
+                    if (args[1].equals("add") && (args[2].equals("pvp") | args[2].equals("pve") | args[2].equals("open"))) {
+                        if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                            p.sendMessage("§bYou must be the owner or warden of a kingdom to add a flag.");
+                            return true;
+                        }
+                        if (!Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(p.getUniqueId().toString()) && !Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                            p.sendMessage("§bYou must be the owner or warden of a kingdom to add a flag.");
+                            return true;
+                        }
+                        Kingdoms.getKingdom(c.getKingdom()).addFlag(args[2]);
+                        p.sendMessage("§bFlag added.");
+                    } else if (args[1].equals("remove") && (args[2].equals("pvp") | args[2].equals("pve") | args[2].equals("open"))) {
+                        if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                            p.sendMessage("§bYou must be the owner or warden of a kingdom to remove a flag.");
+                            return true;
+                        }
+                        if (!Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(p.getUniqueId().toString()) && !Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                            p.sendMessage("§bYou must be the owner or warden of a kingdom to remove a flag.");
+                            return true;
+                        }
+                        Kingdoms.getKingdom(c.getKingdom()).removeFlag(args[2]);
+                        p.sendMessage("§bFlag removed.");
+                    } else {
+                        p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open]");
+                        return true;
+                    }
 
                 } else if (args[0].equalsIgnoreCase("info")) {
                     if (args.length < 2) {

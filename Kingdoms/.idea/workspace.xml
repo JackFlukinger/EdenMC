@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d768a953-8f9b-4aaf-8155-fe1a15da6e58" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,16 +33,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
               <caret line="59" column="9" lean-forward="false" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1800#1801#0" expanded="false" />
+                <element signature="e#1830#1831#0" expanded="false" />
+                <element signature="e#5474#5475#0" expanded="false" />
+                <element signature="e#5506#5507#0" expanded="false" />
+                <element signature="e#5537#5538#0" expanded="false" />
+                <element signature="e#5567#5568#0" expanded="false" />
+                <element signature="e#8148#8149#0" expanded="false" />
+                <element signature="e#8232#8233#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kingdom.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Kingdom.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="426">
+              <caret line="166" column="46" lean-forward="true" selection-start-line="166" selection-start-column="46" selection-end-line="166" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#movedOnLand#0;class#Kingdom#0" expanded="false" />
@@ -66,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KingdomCommands.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KingdomCommands.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="433" column="82" lean-forward="false" selection-start-line="433" selection-start-column="82" selection-end-line="433" selection-end-column="82" />
+            <state relative-caret-position="511">
+              <caret line="351" column="82" lean-forward="false" selection-start-line="351" selection-start-column="82" selection-end-line="351" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#855#870#0" expanded="true" />
@@ -142,8 +152,8 @@
       <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            <state relative-caret-position="255">
+              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -233,14 +243,14 @@
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomChunk.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/ChunkCommands.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/MySQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/MoveListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizen.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java" />
       </list>
     </option>
   </component>
@@ -841,7 +851,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519103330824</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implemented /kingdom promote, /kingdom demote, complete with confirmation for owners stepping down">
+      <created>1519167627317</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1519167627317</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -871,7 +888,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3308668" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -899,7 +916,8 @@
     <MESSAGE value="Fixed satchel w/ excess gold error, began KingdomChunk and Kingdom implementation and backend" />
     <MESSAGE value="Implemented kingdom creation, expansion, chunk and kingdom flags, wardens, etc. Some movement listeners added." />
     <MESSAGE value="Implemented /kingdom create, /kingdom claim, /kingdom add, /kingdom remove, /kingdom leave, /kingdom delete, /kingdom info, /kingdom list, /kingdom help, etc, plus accompanying functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented /kingdom create, /kingdom claim, /kingdom add, /kingdom remove, /kingdom leave, /kingdom delete, /kingdom info, /kingdom list, /kingdom help, etc, plus accompanying functions." />
+    <MESSAGE value="Implemented /kingdom promote, /kingdom demote, complete with confirmation for owners stepping down" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented /kingdom promote, /kingdom demote, complete with confirmation for owners stepping down" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1147,14 +1165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/ChunkCommands.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1185,7 +1195,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="59" column="9" lean-forward="false" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1800#1801#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+            <element signature="e#5474#5475#0" expanded="false" />
+            <element signature="e#5506#5507#0" expanded="false" />
+            <element signature="e#5537#5538#0" expanded="false" />
+            <element signature="e#5567#5568#0" expanded="false" />
+            <element signature="e#8148#8149#0" expanded="false" />
+            <element signature="e#8232#8233#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1221,29 +1241,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="351" column="82" lean-forward="false" selection-start-line="351" selection-start-column="82" selection-end-line="351" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#855#870#0" expanded="true" />
+            <element signature="e#16128#16129#0" expanded="true" />
+            <element signature="e#16228#16229#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state relative-caret-position="426">
+          <caret line="166" column="46" lean-forward="true" selection-start-line="166" selection-start-column="46" selection-end-line="166" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#movedOnLand#0;class#Kingdom#0" expanded="false" />
             <element signature="method#onLand#0;class#Kingdom#0" expanded="false" />
             <element signature="e#4128#4129#0" expanded="true" />
             <element signature="e#4161#4162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="433" column="82" lean-forward="false" selection-start-line="433" selection-start-column="82" selection-end-line="433" selection-end-column="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#855#870#0" expanded="true" />
-            <element signature="e#16128#16129#0" expanded="true" />
-            <element signature="e#16228#16229#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -138,6 +138,36 @@ public class Kingdom implements Traversable{
         chunks.remove(ch);
     }
 
+    public void addFlag(String flag) {
+        if (flags.contains(flag)) {
+            return;
+        }
+        flags.add(flag);
+        String flagString = "";
+        for (String fl : flags) {
+            flagString = flagString + fl + ",";
+        }
+        flagString = flagString.substring(0,flagString.length() - 1);
+        String[] data = {kingdom, flagString};
+        String[] columns = {"kingdom", "flags"};
+        MySQL.enterData("kingdoms", columns, data);
+    }
+    public void removeFlag(String flag) {
+        if (!flags.contains(flag)) {
+            return;
+        }
+        flags.remove(flag);
+        String flagString = "";
+        for (String fl : flags) {
+            flagString = flagString + fl + ",";
+        }
+        if (flagString.length() > 1) {
+            flagString = flagString.substring(0, flagString.length() - 1);
+        }
+        String[] data = {kingdom, flagString};
+        String[] columns = {"kingdom", "flags"};
+        MySQL.enterData("kingdoms", columns, data);
+    }
     public String getOwner() {
         return owner;
     }
