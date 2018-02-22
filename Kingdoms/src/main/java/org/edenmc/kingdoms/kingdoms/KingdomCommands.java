@@ -316,7 +316,6 @@ public class KingdomCommands implements CommandExecutor {
                         p.sendMessage("§b" + args[1] + " is not a Warden in your kingdom.");
                         return true;
                     }
-                    //Todo Implement /kingdom flag
                 }  else if (args[0].equalsIgnoreCase("flag")) {
                     if (args.length < 3) {
                         p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open]");
@@ -352,7 +351,35 @@ public class KingdomCommands implements CommandExecutor {
                         p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open]");
                         return true;
                     }
-
+                } else if (args[0].equalsIgnoreCase("join")) {
+                    if (c.getKingdom() != null && !c.getKingdom().equals("")) {
+                        p.sendMessage("§bYou are already in a kingdom!");
+                        return true;
+                    }
+                    if (args.length < 2) {
+                        p.sendMessage("§b/kingdom join [kingdom]");
+                        return true;
+                    }
+                    if (Kingdoms.getKingdom(args[1]) == null) {
+                        p.sendMessage("§b" + args[1] + " is not a valid kingdom!");
+                        return true;
+                    }
+                    if (!Kingdoms.getKingdom(args[1]).getFlags().contains("open")) {
+                        p.sendMessage("§bThis kingdom is not open. You must be invited to join.");
+                        return true;
+                    }
+                    c.setKingdom(args[1]);
+                    Kingdoms.getKingdom(args[1]).addResident(p);
+                    for (String uuid : Kingdoms.getKingdom(args[1]).getWardens()) {
+                        if (Bukkit.getPlayer(UUID.fromString(uuid)) != null) {
+                            Bukkit.getPlayer(UUID.fromString(uuid)).sendMessage("§b" + p.getName() + " has joined " + args[1] + "!");
+                        }
+                    }
+                    if (Bukkit.getPlayer(UUID.fromString(Kingdoms.getKingdom(args[1]).getOwner())) != null) {
+                        Bukkit.getPlayer(UUID.fromString(Kingdoms.getKingdom(args[1]).getOwner())).sendMessage("§b" + p.getName() + " has joined " + args[1] + "!");
+                    }
+                    p.sendMessage("§bYou have joined the kingdom of " + args[1] + "!");
+                    return true;
                 } else if (args[0].equalsIgnoreCase("info")) {
                     if (args.length < 2) {
                         if (c.getKingdom() == null || c.getKingdom().equals("")) {
@@ -444,6 +471,7 @@ public class KingdomCommands implements CommandExecutor {
                 }
                 else if (args[0].equalsIgnoreCase("help")) {
                     p.sendMessage("§b/kingdom create [name] §9- Creates a new kingdom called [name]");
+                    p.sendMessage("§b/kingdom join [kingdom] §9- Joins an open kingdom");
                     p.sendMessage("§b/kingdom claim §9- Claim current chunk");
                     p.sendMessage("§b/kingdom add [player] §9- Invite [player] to your kingdom");
                     p.sendMessage("§b/kingdom remove [player] §9- Remove [player] from your kingdom");
@@ -458,6 +486,7 @@ public class KingdomCommands implements CommandExecutor {
                 }
             } else {
                 p.sendMessage("§b/kingdom create [name] §9- Creates a new kingdom called [name]");
+                p.sendMessage("§b/kingdom join [kingdom] §9- Joins an open kingdom");
                 p.sendMessage("§b/kingdom claim §9- Claim current chunk");
                 p.sendMessage("§b/kingdom add [player] §9- Invite [player] to your kingdom");
                 p.sendMessage("§b/kingdom remove [player] §9- Remove [player] from your kingdom");
@@ -534,7 +563,10 @@ public class KingdomCommands implements CommandExecutor {
         } else if (sender instanceof Player && cmd.getName().equalsIgnoreCase("deny") ) {
             Player p = (Player) sender;
             Citizen c = Kingdoms.getCitizen(p.getName());
-            if (pendingDeletes.containsKey(p.getName())) {
+            if (pendingStepDowns.containsKey(p.getName())) {
+                p.sendMessage("§bYou have chosen not to step down as owner.");
+                pendingStepDowns.remove(p.getName());
+            } else if (pendingDeletes.containsKey(p.getName())) {
                 p.sendMessage("§bYou have chosen not to delete your kingdom.");
                 pendingDeletes.remove(p.getName());
             } else if (pendingLeaves.containsKey(p.getName())) {
