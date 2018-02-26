@@ -1,13 +1,11 @@
 package org.edenmc.kingdoms;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.edenmc.kingdoms.citizen.Citizen;
@@ -17,13 +15,11 @@ import org.edenmc.kingdoms.customitems.CustomItemConfig;
 import org.edenmc.kingdoms.customitems.CustomItemListener;
 import org.edenmc.kingdoms.customitems.CustomItemMobSpawnUtil;
 import org.edenmc.kingdoms.economy.GoldCommands;
+import org.edenmc.kingdoms.economy.GoldFunctions;
 import org.edenmc.kingdoms.economy.GoldHandler;
 import org.edenmc.kingdoms.economy.SatchelHandler;
 import org.edenmc.kingdoms.items.ItemCommands;
-import org.edenmc.kingdoms.kingdoms.Kingdom;
-import org.edenmc.kingdoms.kingdoms.KingdomChunk;
-import org.edenmc.kingdoms.kingdoms.KingdomCommands;
-import org.edenmc.kingdoms.kingdoms.MoveListener;
+import org.edenmc.kingdoms.kingdoms.*;
 import org.edenmc.kingdoms.race.RaceConfig;
 import org.edenmc.kingdoms.race.RaceHandler;
 
@@ -36,6 +32,7 @@ import java.util.HashMap;
  */
 public class Kingdoms extends JavaPlugin {
     public static int startingGold;
+    public static HashMap<String,Integer> kingdomPrices = new HashMap<String,Integer>();
     public static HashMap<String,ArrayList<Object>> itemMap = new HashMap<String,ArrayList<Object>>();
     public static HashMap<String,String> mySQL = new HashMap<String,String>();
     public static HashMap<String,HashMap<String,String>> tablesToMake = new HashMap<String,HashMap<String,String>>();
@@ -61,6 +58,7 @@ public class Kingdoms extends JavaPlugin {
         loadMysql();
         registerEvents();
         registerCommands();
+        registerRecipes();
         loadItems();
         loadCustomItems();
         loadRaces();
@@ -84,9 +82,13 @@ public class Kingdoms extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CraftListener(), this);
         getServer().getPluginManager().registerEvents(new CustomItemMobSpawnUtil(), this);
         getServer().getPluginManager().registerEvents(new MoveListener(), this);
+        getServer().getPluginManager().registerEvents(new KingdomListener(), this);
 
+    }
 
-
+    //Register recipes
+    public void registerRecipes() {
+        getServer().addRecipe(new FurnaceRecipe(GoldFunctions.getGoldItem(3), Material.GOLD_INGOT));
     }
 
     //Register commands
@@ -96,7 +98,7 @@ public class Kingdoms extends JavaPlugin {
         getCommand("kingdom").setExecutor(new KingdomCommands());
         getCommand("accept").setExecutor(new KingdomCommands());
         getCommand("deny").setExecutor(new KingdomCommands());
-        getCommand("chunk").setExecutor(new KingdomCommands());
+        getCommand("chunk").setExecutor(new ChunkCommands());
 
 
     }
@@ -137,6 +139,11 @@ public class Kingdoms extends JavaPlugin {
             itemMap.put(item,attributes);
         }
         startingGold = getConfig().getInt("StartingGold");
+        kingdomPrices.put("create", getConfig().getInt("KingdomPrices.Create"));
+        kingdomPrices.put("claim", getConfig().getInt("KingdomPrices.Claim"));
+        for (String mobType : config.getConfigurationSection("GoldPerMobKill").getKeys(false)) {
+            GoldHandler.goldPerMobKill.put(mobType, config.getInt("GoldPerMobKill." + mobType));
+        }
     }
 
 
@@ -168,11 +175,18 @@ public class Kingdoms extends JavaPlugin {
             Chunk chunk = world.getChunkAt(Integer.parseInt(row.split(" ")[0]), Integer.parseInt(row.split(" ")[1]));
             String kingdom = MySQL.getData("chunks", "chunk", "kingdom", row);
             ArrayList<String> flags = new ArrayList<String>();
+            ArrayList<String> members = new ArrayList<String>();
             for (String flag : MySQL.getData("chunks", "chunk", "flags", row).split(",")) {
                 flags.add(flag);
             }
+            for (String member : MySQL.getData("chunks", "chunk", "members", row).split(",")) {
+                members.add(member);
+            }
             String owner = MySQL.getData("chunks", "chunk", "owner", row);
-            KingdomChunk ch = new KingdomChunk(chunk, kingdom, owner, flags);
+            if (owner == null) {
+                owner = "";
+            }
+            KingdomChunk ch = new KingdomChunk(chunk, kingdom, owner, members, flags);
             chunks.put(ch.getChunk().getX() + " " + ch.getChunk().getZ(), ch);
         }
     }
@@ -186,8 +200,15 @@ public class Kingdoms extends JavaPlugin {
         if (flagString.length() > 0) {
             flagString.substring(0, flagString.length() - 1);
         }
-        String[] data = {ck.getChunk().getX() + " " + ck.getChunk().getZ(), ck.getKingdom(), ck.getWorld().getName(), flagString};
-        String[] columns = {"chunk", "kingdom", "world", "flags"};
+        String memString = "";
+        for (String mem : ck.getMembers()) {
+            memString = memString + mem + ",";
+        }
+        if (memString.length() > 0) {
+            memString.substring(0, memString.length() - 1);
+        }
+        String[] data = {ck.getChunk().getX() + " " + ck.getChunk().getZ(), ck.getKingdom(), ck.getWorld().getName(), memString, flagString};
+        String[] columns = {"chunk", "kingdom", "world", "members", "flags"};
         MySQL.enterData("chunks", columns, data);
     }
 
@@ -229,7 +250,9 @@ public class Kingdoms extends JavaPlugin {
                     flags.add(flag);
                 }
             }
-            Kingdom k = new Kingdom(kingdom, owner, chs, wardens, residents, flags);
+            String locString = MySQL.getData("kingdoms", "kingdom", "spawn", kingdom);
+            Location loc = new Location(Bukkit.getWorld(locString.split(",")[0]), Integer.parseInt(locString.split(",")[1]), Integer.parseInt(locString.split(",")[2]), Integer.parseInt(locString.split(",")[3]));
+            Kingdom k = new Kingdom(kingdom, owner, chs, wardens, residents, flags, loc);
             setKingdom(k);
         }
     }

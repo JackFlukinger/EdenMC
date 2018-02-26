@@ -27,20 +27,22 @@ public class GoldCommands implements CommandExecutor {
                             Integer newBal = Integer.parseInt(args[2]);
                             recip.setBalance(newBal);
                         } catch (NumberFormatException e) {
-                            p.getPlayer().sendMessage("Not a valid integer");
+                            p.getPlayer().sendMessage("§bNot a valid integer");
                             e.printStackTrace();
                         }
                     } else {
-                        p.getPlayer().sendMessage(args[1] + " is not a valid player");
+                        p.getPlayer().sendMessage("§b" + args[1] + " is not a valid player");
                     }
+                } else if (args[0].equals("set")){
+                    p.getPlayer().sendMessage("§b/gold [set] [player] [amount]");
                 }
             } else if (args.length == 1) {
                 if (Bukkit.getServer().getPlayerExact(args[0]) != null) {
                     Citizen check = Kingdoms.getCitizen(args[0]);
-                    p.getPlayer().sendMessage("Balance: " + check.getBalance());
+                    p.getPlayer().sendMessage("§bBalance: " + check.getBalance());
+                    return true;
                 }
-            } else {
-                p.getPlayer().sendMessage("/gold [set] [username] [amount]");
+                p.getPlayer().sendMessage("§b/gold [player]");
             }
             return true;
         }

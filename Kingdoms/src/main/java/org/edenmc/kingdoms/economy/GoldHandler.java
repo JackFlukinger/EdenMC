@@ -1,18 +1,20 @@
 package org.edenmc.kingdoms.economy;
 
+import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.inventory.ItemStack;
 import org.edenmc.kingdoms.Kingdoms;
 import org.edenmc.kingdoms.citizen.Citizen;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -20,17 +22,9 @@ import java.util.HashMap;
  */
 public class GoldHandler implements Listener  {
     public static HashMap<Player, Object[]> lastTitle = new HashMap<Player, Object[]>();
+    public static HashMap<String, Integer> goldPerMobKill = new HashMap<String,Integer>();
 
 
-    //Give player starting gold as defined in config
-    @EventHandler
-    public void startingGold(PlayerJoinEvent e) throws IOException {
-        Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
-        if (!e.getPlayer().hasPlayedBefore()) {
-            p.giveSatchel();
-            p.setBalance(Kingdoms.startingGold);
-        }
-    }
 
     //Add gold to balance when picked up
     @EventHandler
@@ -108,6 +102,30 @@ public class GoldHandler implements Listener  {
             Citizen p = Kingdoms.getCitizen(e.getPlayer().getName());
             Integer newBalance = p.getBalance() - amount;
             p.setBalance(newBalance);
+        }
+    }
+
+    //Put gold in player's satchel if clicked in furnace
+    @EventHandler
+    public void goldClickEvent(InventoryClickEvent e) {
+        if (e.getWhoClicked() instanceof Player && e.getClickedInventory() != null && e.getClickedInventory().getType() == InventoryType.FURNACE) {
+            if (GoldFunctions.isGold(e.getCurrentItem())) {
+                Player p = (Player) e.getWhoClicked();
+                Citizen c = Kingdoms.getCitizen(p.getName());
+                c.setBalance(c.getBalance() + e.getCurrentItem().getAmount());
+                e.setCurrentItem(new ItemStack(Material.AIR));
+                p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP,0.5F,1.0F);
+            }
+        }
+    }
+
+    //Drop gold for mob kill
+    @EventHandler
+    public void killMob(EntityDamageByEntityEvent e) {
+        if (e.getEntity() instanceof LivingEntity && !(e.getEntity() instanceof Player)) {
+            if (e.getDamage() > ((LivingEntity) e.getEntity()).getHealth()) {
+                e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), GoldFunctions.getGoldItem(goldPerMobKill.get(e.getEntity().getType().toString())));
+            }
         }
     }
 }

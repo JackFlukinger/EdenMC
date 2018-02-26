@@ -22,6 +22,7 @@ public class KingdomCommands implements CommandExecutor {
     static HashMap<String, String> pendingLeaves = new HashMap<String, String>();
     static HashMap<String, String> pendingDeletes = new HashMap<String, String>();
     static HashMap<String, String> pendingStepDowns = new HashMap<String,String>();
+    static ArrayList<String> pendingSpawns = new ArrayList<String>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -39,6 +40,10 @@ public class KingdomCommands implements CommandExecutor {
                             p.sendMessage("§bA kingdom already exists within 15 chunks.");
                             return true;
                         }
+                        if (c.getBalance() < Kingdoms.kingdomPrices.get("create")) {
+                            p.sendMessage("§bIt costs " + Kingdoms.kingdomPrices.get("create") + " gold pieces to create a kingdom!");
+                            return true;
+                        }
                         if (Kingdoms.getKingdom(args[1]) != null) {
                             p.sendMessage("§bA Kingdom already exists with that name.");
                             return true;
@@ -47,7 +52,8 @@ public class KingdomCommands implements CommandExecutor {
                             p.sendMessage("§bThat name is too long!");
                             return true;
                         }
-                        KingdomChunk ch = new KingdomChunk(p.getLocation().getChunk(), args[1], "", new ArrayList<String>());
+                        c.setBalance(c.getBalance() - Kingdoms.kingdomPrices.get("create"));
+                        KingdomChunk ch = new KingdomChunk(p.getLocation().getChunk(), args[1], "", new ArrayList<String>(), new ArrayList<String>());
                         Kingdoms.addChunk(ch);
                         ArrayList<KingdomChunk> chunks = new ArrayList<KingdomChunk>();
                         chunks.add(ch);
@@ -55,15 +61,49 @@ public class KingdomCommands implements CommandExecutor {
                         res.add(p.getUniqueId().toString());
                         ArrayList<String> war = new ArrayList<String>();
                         c.setKingdom(args[1]);
-                        Kingdom k = new Kingdom(args[1], p.getUniqueId().toString(), chunks, war, res, new ArrayList<String>());
+                        Kingdom k = new Kingdom(args[1], p.getUniqueId().toString(), chunks, war, res, new ArrayList<String>(), p.getLocation().getBlock().getLocation());
                         Kingdoms.setKingdom(k);
-                        String[] data = {args[1], p.getUniqueId().toString(), "", p.getUniqueId().toString(), ""};
-                        String[] columns = {"kingdom", "owner", "wardens", "residents", "flags"};
+                        String spawnString = p.getLocation().getWorld().getName() + "," + p.getLocation().getBlock().getX() + "," + p.getLocation().getBlock().getY() + "," + p.getLocation().getBlock().getZ();
+                        String[] data = {args[1], p.getUniqueId().toString(), "", p.getUniqueId().toString(), "", spawnString};
+                        String[] columns = {"kingdom", "owner", "wardens", "residents", "flags", "spawn"};
                         MySQL.enterData("kingdoms", columns, data);
+                        p.sendMessage("§b- " + Kingdoms.kingdomPrices.get("create") + " gold pieces!");
                         Bukkit.broadcastMessage("§b" + p.getDisplayName() + " §bhas create the Kingdom of " + args[1] + "!");
                     } else {
                         p.sendMessage("§b/kingdom create [name]");
                     }
+                } else if (args[0].equalsIgnoreCase("spawn")) {
+                    if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                        p.sendMessage("§bYou must be in a kingdom to use this command.");
+                        return true;
+                    }
+                    pendingSpawns.add(p.getName());
+                    p.sendMessage("§bStand still! You will teleport in 3 seconds.");
+                    Bukkit.getScheduler().runTaskLater(Kingdoms.getPlugin(), new Runnable(){
+                        @Override
+                        public void run(){
+                            if (pendingSpawns.contains(p.getName())) {
+                                p.teleport(Kingdoms.getKingdom(c.getKingdom()).getSpawn());
+                                pendingSpawns.remove(p.getName());
+                            }
+                        }
+                    }, 60L);
+                } else if (args[0].equalsIgnoreCase("setspawn")) {
+                    if (c.getKingdom() == null || c.getKingdom().equals("")) {
+                        p.sendMessage("§bYou must own a kingdom to use this command.");
+                        return true;
+                    }
+                    if (!Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                        p.sendMessage("§bYou must own the kingdom to use this command.");
+                        return true;
+                    }
+                    if (!Kingdoms.getChunks().containsKey(p.getLocation().getChunk().getX() + " " + p.getLocation().getChunk().getZ())) {
+                        p.sendMessage("§bSpawn must be set within the kingdom.");
+                        return true;
+                    }
+                    p.sendMessage("§bSpawn set!");
+                    Kingdoms.getKingdom(c.getKingdom()).setSpawn(p.getLocation().getBlock().getLocation());
+                    return true;
                 } else if (args[0].equalsIgnoreCase("claim")) {
                     if (c.getKingdom() == null || c.getKingdom().equals("")) {
                         p.sendMessage("§bYou must be the owner or warden of a kingdom to claim land.");
@@ -81,9 +121,15 @@ public class KingdomCommands implements CommandExecutor {
                         p.sendMessage("§bYou must be adjacent to your kingdom to claim a chunk.");
                         return true;
                     }
-                    KingdomChunk ch = new KingdomChunk(p.getLocation().getChunk(), c.getKingdom(), "", new ArrayList<String>());
+                    if (c.getBalance() < Kingdoms.kingdomPrices.get("claim")) {
+                        p.sendMessage("§bIt costs " + Kingdoms.kingdomPrices.get("claim") + " gold pieces to claim land for your kingdom!");
+                        return true;
+                    }
+                    c.setBalance(c.getBalance() - Kingdoms.kingdomPrices.get("claim"));
+                    KingdomChunk ch = new KingdomChunk(p.getLocation().getChunk(), c.getKingdom(), "", new ArrayList<String>(), new ArrayList<String>());
                     Kingdoms.addChunk(ch);
                     Kingdoms.getKingdom(c.getKingdom()).addChunk(ch);
+                    p.sendMessage("§b- " + Kingdoms.kingdomPrices.get("claim") + " gold pieces!");
                     p.sendMessage("§bChunk claimed!");
                 } else if (args[0].equalsIgnoreCase("unclaim")) {
                     if (c.getKingdom() == null || c.getKingdom().equals("")) {
@@ -129,10 +175,11 @@ public class KingdomCommands implements CommandExecutor {
                     }
                     Player invited = Bukkit.getPlayer(args[1]);
                     Citizen cit = Kingdoms.getCitizen(invited.getName());
-                    if (cit.getKingdom() != null && !c.getKingdom().equals("")) {
+                    if (cit.getKingdom() != null && !cit.getKingdom().equals("")) {
                         p.sendMessage("§bPlayer is already in a kingdom.");
                         return true;
                     }
+                    p.sendMessage("§bYou invited " + invited.getName() + " to join the kingdom!");
                     invited.sendMessage("§bYou have been invited to join the Kingdom of " + c.getKingdom() + "!");
                     invited.sendMessage("§bType /accept to accept the invitation.");
                     invited.sendMessage("§bType /deny to decline the invitation.");
@@ -251,9 +298,9 @@ public class KingdomCommands implements CommandExecutor {
                         cRank = "Owner";
                     }
                     String citRank = "Resident";
-                    if (Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(p.getUniqueId().toString())) {
+                    if (Kingdoms.getKingdom(c.getKingdom()).getOwner().equals(promoted.getUniqueId().toString())) {
                         citRank = "Owner";
-                    } else if (Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(p.getUniqueId().toString())) {
+                    } else if (Kingdoms.getKingdom(c.getKingdom()).getWardens().contains(promoted.getUniqueId().toString())) {
                         citRank = "Warden";
                     }
                     if (cRank.equals("Owner") && citRank.equals("Warden")) {
@@ -271,6 +318,7 @@ public class KingdomCommands implements CommandExecutor {
                         Kingdoms.getKingdom(c.getKingdom()).addWarden(promoted.getUniqueId().toString());
                         promoted.sendMessage("§bYou have been promoted to Warden!");
                         p.sendMessage("§bYou have promoted " + promoted.getName() + " to Warden!");
+                        return true;
                     }
 
                 } else if (args[0].equalsIgnoreCase("demote")) {
@@ -472,7 +520,10 @@ public class KingdomCommands implements CommandExecutor {
                 else if (args[0].equalsIgnoreCase("help")) {
                     p.sendMessage("§b/kingdom create [name] §9- Creates a new kingdom called [name]");
                     p.sendMessage("§b/kingdom join [kingdom] §9- Joins an open kingdom");
-                    p.sendMessage("§b/kingdom claim §9- Claim current chunk");
+                    p.sendMessage("§b/kingdom claim §9- Claim current chunk for your kingdom");
+                    p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open] §9- Add/remove flag");
+                    p.sendMessage("§b/kingdom spawn §9- Teleport to kingdom spawn");
+                    p.sendMessage("§b/kingdom setspawn §9- Set kingdom spawn");
                     p.sendMessage("§b/kingdom add [player] §9- Invite [player] to your kingdom");
                     p.sendMessage("§b/kingdom remove [player] §9- Remove [player] from your kingdom");
                     p.sendMessage("§b/kingdom promote [resident] §9- Promote resident to warden");
@@ -481,13 +532,17 @@ public class KingdomCommands implements CommandExecutor {
                     p.sendMessage("§b/kingdom delete §9- Delete your kingdom");
                     p.sendMessage("§b/kingdom info [kingdom] §9- Print information about [kingdom]");
                     p.sendMessage("§b/kingdom list §9- Print a list of all kingdoms");
+                    return true;
 
 
                 }
             } else {
                 p.sendMessage("§b/kingdom create [name] §9- Creates a new kingdom called [name]");
                 p.sendMessage("§b/kingdom join [kingdom] §9- Joins an open kingdom");
-                p.sendMessage("§b/kingdom claim §9- Claim current chunk");
+                p.sendMessage("§b/kingdom claim §9- Claim current chunk for your kingdom");
+                p.sendMessage("§b/kingdom flag [add/remove] [pvp/pve/open] §9- Add/remove flag");
+                p.sendMessage("§b/kingdom spawn §9- Teleport to kingdom spawn");
+                p.sendMessage("§b/kingdom setspawn §9- Set kingdom spawn");
                 p.sendMessage("§b/kingdom add [player] §9- Invite [player] to your kingdom");
                 p.sendMessage("§b/kingdom remove [player] §9- Remove [player] from your kingdom");
                 p.sendMessage("§b/kingdom promote [resident] §9- Promote resident to warden");
@@ -496,6 +551,7 @@ public class KingdomCommands implements CommandExecutor {
                 p.sendMessage("§b/kingdom delete §9- Delete your kingdom");
                 p.sendMessage("§b/kingdom info [kingdom] §9- Print information about [kingdom]");
                 p.sendMessage("§b/kingdom list §9- Print a list of all kingdoms");
+                return true;
 
 
             }

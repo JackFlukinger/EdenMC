@@ -75,7 +75,6 @@ public class Citizen {
     public void applyPotionEffects() {
         if (race != null) {
             for (PotionEffect p : Kingdoms.getRaceConf().getEffects(race, raceLevel)) {
-                Bukkit.broadcastMessage(p.toString());
                 getPlayer().addPotionEffect(p,true);
             }
         }
@@ -168,6 +167,9 @@ public class Citizen {
         String[] data = {getPlayer().getUniqueId().toString(), String.valueOf(balance)};
         String[] columns = {"uuid","balance"};
         MySQL.enterData("players",columns,data);
+        if (getPlayer().getInventory().getItemInOffHand() == null | getPlayer().getInventory().getItemInOffHand().getType() == Material.AIR) {
+            giveSatchel();
+        }
         ItemStack satchel = getPlayer().getInventory().getItemInOffHand();
         ItemMeta meta = satchel.getItemMeta();
         String[] lore = {"§b" + balance + " Gold Pieces"};

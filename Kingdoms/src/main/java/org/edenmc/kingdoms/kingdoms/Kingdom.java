@@ -5,14 +5,13 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.edenmc.kingdoms.Kingdoms;
 import org.edenmc.kingdoms.MySQL;
-import org.edenmc.kingdoms.citizen.Citizen;
 
 import java.util.ArrayList;
 
 /**
  * Created by Jack on 2/11/2018.
  */
-public class Kingdom implements Traversable{
+public class Kingdom {
 
     String kingdom;
     String owner;
@@ -20,15 +19,17 @@ public class Kingdom implements Traversable{
     ArrayList<String> wardens;
     ArrayList<String> flags;
     ArrayList<KingdomChunk> chunks;
+    Location spawn;
 
 
-    public Kingdom(String name, String ow, ArrayList<KingdomChunk> ch, ArrayList<String> wr, ArrayList<String> res, ArrayList<String> fl) {
+    public Kingdom(String name, String ow, ArrayList<KingdomChunk> ch, ArrayList<String> wr, ArrayList<String> res, ArrayList<String> fl, Location loc) {
         kingdom = name;
         owner = ow;
         chunks = ch;
         wardens = wr;
         residents = res;
         flags = fl;
+        spawn = loc;
     }
 
     public void addResident(Player p) {
@@ -82,7 +83,9 @@ public class Kingdom implements Traversable{
         for (String war : wardens) {
             warString = warString + war + ",";
         }
-        warString = warString.substring(0,warString.length() - 1);
+        if (warString.length() >= 1) {
+            warString = warString.substring(0, warString.length() - 1);
+        }
         String[] data = {kingdom, warString};
         String[] columns = {"kingdom", "wardens"};
         MySQL.enterData("kingdoms", columns, data);
@@ -107,19 +110,16 @@ public class Kingdom implements Traversable{
         MySQL.delete("chunks", "kingdom", getName());
     }
 
-    @Override
-    public boolean movedOnLand(Citizen c) {
-        if (onLand(c.getPlayer().getLocation())) {
-            return true;
-        }
-        return false;
+    public void setSpawn(Location loc) {
+        spawn = loc;
+        String locString = loc.getWorld() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
+        String[] data = {kingdom, locString};
+        String[] columns = {"kingdom", "spawn"};
+        MySQL.enterData("kingdoms", columns, data);
     }
 
-    public boolean onLand(Location loc) {
-        if (chunks.contains(loc.getChunk())) {
-            return true;
-        }
-        return false;
+    public Location getSpawn() {
+        return spawn;
     }
 
     public ArrayList<KingdomChunk> getChunks() {
@@ -161,7 +161,7 @@ public class Kingdom implements Traversable{
         for (String fl : flags) {
             flagString = flagString + fl + ",";
         }
-        if (flagString.length() > 1) {
+        if (flagString.length() >= 1) {
             flagString = flagString.substring(0, flagString.length() - 1);
         }
         String[] data = {kingdom, flagString};

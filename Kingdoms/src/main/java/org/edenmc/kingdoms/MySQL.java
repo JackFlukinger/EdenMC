@@ -55,12 +55,14 @@ public class MySQL {
                     " wardens VARCHAR(10000), " +
                     " residents VARCHAR(10000), " +
                     " flags VARCHAR(128), " +
+                    " spawn VARCHAR(36), " +
                     " PRIMARY KEY (kingdom))";
             String chunks = "CREATE TABLE IF NOT EXISTS " + chunkTable +
                     " (chunk VARCHAR(36) not NULL, " +
                     " kingdom VARCHAR(36), " +
                     " world VARCHAR(36), " +
                     " owner VARCHAR(36), " +
+                    " members VARCHAR(10000), " +
                     " flags VARCHAR(128), " +
                     " PRIMARY KEY (chunk))";
             createTable.executeUpdate(players);

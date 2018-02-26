@@ -37,6 +37,7 @@ public class ItemFunctions {
         p.getInventory().addItem(finalItem);
     }
 
+
     public static ItemStack setMaxStackSize(ItemStack is, int amount){
         try {
 

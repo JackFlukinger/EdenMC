@@ -10,6 +10,10 @@ Items:
         Item: GOLD_AXE
         Data: 2
         Name: Satchel
+KingdomPrices:
+    Create: 150
+    Claim: 50
+
 Races:
     Human:
         GUI:
@@ -55,3 +59,33 @@ Races:
             - "SPEED.1000000.0.false"
             2:
             - "SPEED.1000000.1.false"
+GoldPerMobKill:
+  PIG: 0
+  ZOMBIE: 1
+  SKELETON: 1
+  CREEPER: 1
+  ENDER_DRAGON: 50
+  PIG_ZOMBIE: 1
+  COW: 0
+  OCELOT: 0
+  WOLF: 0
+  CHICKEN: 0
+  PLAYER: 0
+  SHEEP: 0
+  RABBIT: 0
+  SNOWMAN: 0
+  MUSHROOM_COW: 0
+  IRON_GOLEM: 0
+  GUARDIAN: 2
+  GHAST: 2
+  MAGMA_CUBE: 1
+  SQUID: 0
+  WITCH: 1
+  WITHER: 1
+  SPIDER: 1
+  SLIME: 0
+  SILVERFISH: 0
+  ENDERMAN: 1
+  BLAZE: 1
+  BAT: 0
+  ENDERMITE: 0
