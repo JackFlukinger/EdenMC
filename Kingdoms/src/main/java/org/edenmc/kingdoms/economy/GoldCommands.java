@@ -39,10 +39,14 @@ public class GoldCommands implements CommandExecutor {
             } else if (args.length == 1) {
                 if (Bukkit.getServer().getPlayerExact(args[0]) != null) {
                     Citizen check = Kingdoms.getCitizen(args[0]);
-                    p.getPlayer().sendMessage("§bBalance: " + check.getBalance());
+                    p.getPlayer().sendMessage("§bBalance: " + check.getBalance() + " Gold Pieces");
                     return true;
                 }
                 p.getPlayer().sendMessage("§b/gold [player]");
+            } else if (args.length == 0) {
+                Citizen check = p;
+                p.getPlayer().sendMessage("§bBalance: " + check.getBalance() + " Gold Pieces");
+                return true;
             }
             return true;
         }

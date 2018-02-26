@@ -10,11 +10,13 @@ commands:
     permission: items.*
   gold:
     permission: gold.*
+    aliases: bal
   kingdom:
     description: Kingdom command prefix
     aliases: k
   chunk:
     description: Chunk command prefix
+    aliases: c
   accept:
     description: Accept invitation
   deny:
