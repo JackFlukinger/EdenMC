@@ -1,0 +1,6 @@
+name: Enchanted
+main: Enchanted
+version: 0.0.1
+website: castlecraftmc.net
+author: Frozen_Thunder
+depend: [ArmorEquipEvent]
