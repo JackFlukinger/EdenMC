@@ -1,6 +1,5 @@
 package org.edenmc.kingdoms.customitems;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -55,6 +54,7 @@ public class CustomItemListener implements Listener {
             }
         }
     }
+
 
     //Run on hit
     public static void onHit(LivingEntity damagedEntity, Entity damager, int exp) {
@@ -125,7 +125,6 @@ public class CustomItemListener implements Listener {
         for (int randomDropValue : rareDrops.keySet()) {
             if (randomTicket < randomDropValue) {
                 itemToDrop = Material.getMaterial(rareDrops.get(randomDropValue));
-                Bukkit.broadcastMessage(itemToDrop.toString());
                 break;
             }
         }

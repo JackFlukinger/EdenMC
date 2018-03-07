@@ -9,7 +9,7 @@ commands:
     aliases: i
     permission: items.*
   gold:
-    permission: gold.*
+    description: Check player's gold
     aliases: bal
   kingdom:
     description: Kingdom command prefix

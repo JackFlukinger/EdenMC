@@ -23,9 +23,9 @@ Races:
             - "§b+ Luck"
         Effects:
             1:
-            - "LUCK.1000000.0.false"
+            - "JUMP.1000000.0.false"
             2:
-            - "LUCK.1000000.1.false"
+            - "JUMP.1000000.1.false"
     Dwarf:
         GUI:
             Material: DIAMOND_CHESTPLATE

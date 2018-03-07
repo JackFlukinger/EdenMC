@@ -17,7 +17,7 @@ public class GoldCommands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) return false;
         Citizen p = Kingdoms.getCitizen(sender.getName());
-        if (cmd.getName().equalsIgnoreCase("gold") && p.getPlayer().hasPermission("gold.*")) {
+        if (cmd.getName().equalsIgnoreCase("gold")) {
             if (args.length == 3) {
                 if (args[0].equals("set") && p.getPlayer().hasPermission("gold.set")) {
                     if (Bukkit.getServer().getPlayerExact(args[1]) != null) {
@@ -37,12 +37,13 @@ public class GoldCommands implements CommandExecutor {
                     p.getPlayer().sendMessage("§b/gold [set] [player] [amount]");
                 }
             } else if (args.length == 1) {
-                if (Bukkit.getServer().getPlayerExact(args[0]) != null) {
-                    Citizen check = Kingdoms.getCitizen(args[0]);
+                if (Bukkit.getServer().getPlayer(args[0]) != null) {
+                    Citizen check = Kingdoms.getCitizen(Bukkit.getServer().getPlayer(args[0]).getName());
                     p.getPlayer().sendMessage("§bBalance: " + check.getBalance() + " Gold Pieces");
                     return true;
                 }
                 p.getPlayer().sendMessage("§b/gold [player]");
+                return true;
             } else if (args.length == 0) {
                 Citizen check = p;
                 p.getPlayer().sendMessage("§bBalance: " + check.getBalance() + " Gold Pieces");

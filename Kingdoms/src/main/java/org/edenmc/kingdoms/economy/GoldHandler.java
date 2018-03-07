@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.edenmc.kingdoms.Kingdoms;
 import org.edenmc.kingdoms.citizen.Citizen;
+import org.edenmc.kingdoms.customitems.CustomItemMobSpawnUtil;
 
 import java.util.HashMap;
 
@@ -83,6 +84,13 @@ public class GoldHandler implements Listener  {
                     e.setCancelled(true);
                 }
             }
+        } else if ((e.getClick() == ClickType.SHIFT_RIGHT | e.getClick() == ClickType.SHIFT_LEFT) && e.getInventory().getName().startsWith("Satchel")) {
+            e.setCancelled(true);
+        }
+            else if (e.getClickedInventory() != null && e.getClickedInventory().getName().startsWith("Satchel")) {
+            if (!GoldFunctions.isGold(e.getCurrentItem())) {
+                e.setCancelled(true);
+            }
         }
     }
 
@@ -91,6 +99,10 @@ public class GoldHandler implements Listener  {
     public void goldDragToInventoryEvent(InventoryDragEvent e) {
         if (GoldFunctions.isGold(e.getOldCursor())) {
             e.setCancelled(true);
+        } else if (e.getInventory() != null && e.getInventory().getName().startsWith("Satchel")) {
+            if (!GoldFunctions.isGold(e.getOldCursor())) {
+                e.setCancelled(true);
+            }
         }
     }
 
@@ -122,8 +134,8 @@ public class GoldHandler implements Listener  {
     //Drop gold for mob kill
     @EventHandler
     public void killMob(EntityDamageByEntityEvent e) {
-        if (e.getEntity() instanceof LivingEntity && !(e.getEntity() instanceof Player)) {
-            if (e.getDamage() > ((LivingEntity) e.getEntity()).getHealth()) {
+        if (e.getEntity() instanceof LivingEntity && !(e.getEntity() instanceof Player) && !CustomItemMobSpawnUtil.getSpawnerMobs().contains(e.getEntity())) {
+            if (e.getDamage() > ((LivingEntity) e.getEntity()).getHealth() && goldPerMobKill.containsKey(e.getEntity().getType().toString())) {
                 e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), GoldFunctions.getGoldItem(goldPerMobKill.get(e.getEntity().getType().toString())));
             }
         }

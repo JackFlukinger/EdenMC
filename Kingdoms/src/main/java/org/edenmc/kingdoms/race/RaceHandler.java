@@ -2,6 +2,7 @@ package org.edenmc.kingdoms.race;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,7 +43,8 @@ public class RaceHandler implements Listener {
                     p.applyPotionEffects();
                     p.getPlayer().setPlayerListName(Kingdoms.getRaceConf().getColor(p.getRace()) + p.getPlayer().getName());
                 }
-
+                ConsoleCommandSender sender = Bukkit.getConsoleSender();
+                Bukkit.dispatchCommand(sender, "rtp 0 10000 -x 0 -z 0 -w world -p " + p.getName());
             }
             e.setCancelled(true);
 

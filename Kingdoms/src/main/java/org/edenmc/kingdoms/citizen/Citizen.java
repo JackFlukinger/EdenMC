@@ -87,7 +87,7 @@ public class Citizen {
                 RaceGUI gui = new RaceGUI();
                 gui.open(getPlayer());
             }
-        }, 20L);
+        }, 1L);
     }
 
     public String getName() { return name; }

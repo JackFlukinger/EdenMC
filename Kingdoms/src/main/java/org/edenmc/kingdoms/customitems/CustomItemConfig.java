@@ -1,6 +1,5 @@
 package org.edenmc.kingdoms.customitems;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -62,10 +61,7 @@ public class CustomItemConfig {
             }
             rareDrops.put(item, dropMap);
         }
-        Bukkit.broadcastMessage(rareDropBlocks.toString());
-        Bukkit.getServer().broadcastMessage(rareDrops.toString());
 
-        Bukkit.broadcastMessage(affectedItems.toString() + prefixes.toString() + baseNames.toString() + suffixes.toString() + modifiers.toString());
         //Get type list and make get-able from array
         for (String type : config.getStringList("Types")) {
             type = type.replace("&", "§");
