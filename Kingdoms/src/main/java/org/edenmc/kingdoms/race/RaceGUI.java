@@ -22,7 +22,6 @@ public class RaceGUI {
     private Inventory gui;
 
     public RaceGUI() {
-
         races = Kingdoms.getRaceConf().getRaces();
         slots = races.size();
         slots = (int) Math.ceil(slots / 9.0) * 9;

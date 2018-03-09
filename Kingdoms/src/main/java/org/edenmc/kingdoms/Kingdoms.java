@@ -20,6 +20,7 @@ import org.edenmc.kingdoms.economy.GoldHandler;
 import org.edenmc.kingdoms.economy.SatchelHandler;
 import org.edenmc.kingdoms.items.ItemCommands;
 import org.edenmc.kingdoms.kingdoms.*;
+import org.edenmc.kingdoms.race.RaceCommands;
 import org.edenmc.kingdoms.race.RaceConfig;
 import org.edenmc.kingdoms.race.RaceHandler;
 
@@ -32,6 +33,7 @@ import java.util.HashMap;
  */
 public class Kingdoms extends JavaPlugin {
     public static int startingGold;
+    public static int switchRaceCooldown;
     public static HashMap<String,Integer> kingdomPrices = new HashMap<String,Integer>();
     public static HashMap<String,ArrayList<Object>> itemMap = new HashMap<String,ArrayList<Object>>();
     public static HashMap<String,String> mySQL = new HashMap<String,String>();
@@ -41,7 +43,9 @@ public class Kingdoms extends JavaPlugin {
     private static HashMap<String,Kingdom> kingdoms = new HashMap<String,Kingdom>();
     private static HashMap<String, KingdomChunk> chunks = new HashMap<String, KingdomChunk>();
     private File configf, customitemsf;
+    private static File cooldownsf;
     private FileConfiguration config, customitems;
+    private static FileConfiguration cooldowns;
     private static CustomItemConfig cIConf;
     private static RaceConfig raceConf;
 
@@ -59,6 +63,7 @@ public class Kingdoms extends JavaPlugin {
         registerEvents();
         registerCommands();
         registerRecipes();
+        loadRandomConfig();
         loadItems();
         loadCustomItems();
         loadRaces();
@@ -99,6 +104,7 @@ public class Kingdoms extends JavaPlugin {
         getCommand("accept").setExecutor(new KingdomCommands());
         getCommand("deny").setExecutor(new KingdomCommands());
         getCommand("chunk").setExecutor(new ChunkCommands());
+        getCommand("switchrace").setExecutor(new RaceCommands());
 
 
     }
@@ -107,6 +113,7 @@ public class Kingdoms extends JavaPlugin {
 
         configf = new File(getDataFolder(), "config.yml");
         customitemsf = new File(getDataFolder(), "customitems.yml");
+        cooldownsf = new File(getDataFolder(), "cooldowns.yml");
 
         if (!configf.exists()) {
             configf.getParentFile().mkdirs();
@@ -116,18 +123,34 @@ public class Kingdoms extends JavaPlugin {
             customitemsf.getParentFile().mkdirs();
             saveResource("customitems.yml", false);
         }
+        if (!cooldownsf.exists()) {
+            cooldownsf.getParentFile().mkdirs();
+            saveResource("cooldowns.yml", false);
+        }
 
         config = new YamlConfiguration();
         customitems = new YamlConfiguration();
+        cooldowns = new YamlConfiguration();
         try {
             config.load(configf);
             customitems.load(customitemsf);
+            cooldowns.load(cooldownsf);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static FileConfiguration getCooldowns() {
+        return cooldowns;
+    }
 
+    public static void saveCooldowns() {
+        try {
+            cooldowns.save(cooldownsf);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     //Load stuff from config into memory
     public void loadItems() {
@@ -136,9 +159,8 @@ public class Kingdoms extends JavaPlugin {
             attributes.add(getConfig().getString("Items." + item + "." + "Item"));
             attributes.add(getConfig().getInt("Items." + item + "." + "Data"));
             attributes.add(getConfig().getString("Items." + item + "." + "Name"));
-            itemMap.put(item,attributes);
+            itemMap.put(item, attributes);
         }
-        startingGold = getConfig().getInt("StartingGold");
         kingdomPrices.put("create", getConfig().getInt("KingdomPrices.Create"));
         kingdomPrices.put("claim", getConfig().getInt("KingdomPrices.Claim"));
         for (String mobType : config.getConfigurationSection("GoldPerMobKill").getKeys(false)) {
@@ -146,6 +168,11 @@ public class Kingdoms extends JavaPlugin {
         }
     }
 
+    //Load random config values
+    public void loadRandomConfig() {
+        startingGold = getConfig().getInt("StartingGold");
+        switchRaceCooldown = getConfig().getInt("SwitchRaceCooldown");
+    }
 
     //Load MySQL settings into memory
     public void loadMysql() {

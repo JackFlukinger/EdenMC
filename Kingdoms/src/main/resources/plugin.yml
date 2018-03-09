@@ -21,3 +21,5 @@ commands:
     description: Accept invitation
   deny:
     description: Decline invitation
+  switchrace:
+    description: Switch races

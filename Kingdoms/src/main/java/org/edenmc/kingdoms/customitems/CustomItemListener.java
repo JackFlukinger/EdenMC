@@ -1,6 +1,7 @@
 package org.edenmc.kingdoms.customitems;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -137,6 +138,34 @@ public class CustomItemListener implements Listener {
             return true;
         } else {
             return false;
+        }
+    }
+
+    @EventHandler(ignoreCancelled=true)
+    public void playerDodge(EntityDamageByEntityEvent e)
+    {
+        if ((e.getEntity() instanceof Player))
+        {
+            Player p = (Player)e.getEntity();
+            int dodge = 0;
+            if ((!(e.getDamager() instanceof Player)) && (!(e.getDamager() instanceof Arrow))) {
+                for (ItemStack armor : p.getInventory().getArmorContents()) {
+                    if (armor != null && armor.getType() != Material.AIR && (Kingdoms.getCIConf().getAffectedItems().contains(armor.getType().toString())) &&
+                            (Kingdoms.getCIConf().getModifierType(armor).equals("dodge")) &&
+                            (hasLore(armor)))
+                    {
+                        dodge += (int)((Kingdoms.getCIConf().getLevel(armor) - 1) * Kingdoms.getCIConf().getMultiplier(armor).doubleValue());
+                        CustomItem ci = new CustomItem(armor);
+                        ci.addEXP(8);
+                        armor.setItemMeta(ci.create().getItemMeta());
+                    }
+                }
+            }
+            if (Math.random() * 1200.0D <= dodge)
+            {
+                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 5.0F, 0.9F);
+                e.setCancelled(true);
+            }
         }
     }
 }

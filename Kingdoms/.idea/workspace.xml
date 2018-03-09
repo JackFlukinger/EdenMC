@@ -2,31 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d768a953-8f9b-4aaf-8155-fe1a15da6e58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/lib/ArmorEquipEvent.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/Enchanted-0.0.1-SNAPSHOT.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/Enchanted.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/EnchantedListener.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/Jump.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/NightVision.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/RunnableStuff.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/Speed.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/net/castlecraftmc/enchanted/WitherNauseaBlindness.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/.settings/org.eclipse.jdt.core.prefs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/.settings/org.eclipse.m2e.core.prefs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/Enchanted.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/Enchanted.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/EnchantedListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/Jump.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/NightVision.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/RunnableStuff.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/Speed.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/java/net/castlecraftmc/enchanted/WitherNauseaBlindness.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/src/main/resources/plugin.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/classes/plugin.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Enchanted/target/maven-archiver/pom.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceCommands.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Enchanted/lib/ArmorEquipEvent.jar" afterPath="$PROJECT_DIR$/../Enchanted/lib/ArmorEquipEvent.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Enchanted/Enchanted.iml" afterPath="$PROJECT_DIR$/../Enchanted/Enchanted.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Enchanted/pom.xml" afterPath="$PROJECT_DIR$/../Enchanted/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java" afterPath="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config.yml" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/playerdata.yml" afterPath="$PROJECT_DIR$/src/main/resources/cooldowns.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,35 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CustomItemListener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CustomItemListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CitizenHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/CitizenHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            <state relative-caret-position="347">
+              <caret line="164" column="13" lean-forward="true" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -86,8 +51,28 @@
       <file leaf-file-name="CustomItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+            <state relative-caret-position="387">
+              <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customitems.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/customitems.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="14" lean-forward="false" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cooldowns.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/cooldowns.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,8 +81,8 @@
       <file leaf-file-name="CustomItemConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2210">
-              <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+            <state relative-caret-position="446">
+              <caret line="218" column="67" lean-forward="false" selection-start-line="218" selection-start-column="67" selection-end-line="218" selection-end-column="67" />
               <folding>
                 <element signature="method#isItemInConfig#0;class#CustomItemConfig#0" expanded="false" />
                 <element signature="method#getNameVariant#0;class#CustomItemConfig#0" expanded="false" />
@@ -106,52 +91,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoldCommands.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoldFunctions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldFunctions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="29" column="43" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoldHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1955">
-              <caret line="131" column="5" lean-forward="false" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RaceGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RaceHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="493">
+              <caret line="53" column="17" lean-forward="false" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Citizen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="157" column="22" lean-forward="false" selection-start-line="157" selection-start-column="22" selection-end-line="157" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RaceCommands.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceCommands.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="352" lean-forward="false" selection-start-line="19" selection-start-column="352" selection-end-line="19" selection-end-column="352" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Kingdoms.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="75" column="29" lean-forward="false" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+              <folding>
+                <element signature="e#2862#2863#0" expanded="true" />
+                <element signature="e#5421#5422#0" expanded="true" />
+                <element signature="e#5453#5454#0" expanded="true" />
+                <element signature="method#loadMysql#0;class#Kingdoms#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,8 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>short</find>
-      <find>satchel</find>
       <find>set</find>
       <find>GOLD_IN</find>
       <find>broadcast</find>
@@ -198,6 +188,8 @@
       <find>run()</find>
       <find>message</find>
       <find>broad</find>
+      <find>luck</find>
+      <find>dodge</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -231,8 +223,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/customitems.yml" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CraftListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemMobSpawnUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/ProgressBar.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomChunk.java" />
@@ -242,17 +232,20 @@
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/CitizenHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/items/ItemFunctions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/MoveListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
-        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceCommands.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java" />
       </list>
     </option>
   </component>
@@ -316,7 +309,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -368,6 +361,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -579,7 +576,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -926,7 +923,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520389108220</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added /gold give">
+      <created>1520401443099</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1520401443100</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -947,28 +951,28 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.50208336" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15729167" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -990,7 +994,8 @@
     <MESSAGE value="Implemented /chunk claim, /chunk unclaim, /chunk add, /chunk remove, /chunk info, /chunk flag add/remove/etc., /kingdom spawn, /kingdom setspawn, bug tested kingdom and chunk protection, implemented gold smelting from gold ingot, implemented gold drop on mob death, implemented world regen after explosion" />
     <MESSAGE value="Added /c and /bal as aliases" />
     <MESSAGE value="Bug Fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes" />
+    <MESSAGE value="Added /gold give" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added /gold give" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -999,13 +1004,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/items/ItemCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="54" column="13" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -1017,7 +1015,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1079,25 +1079,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="43" lean-forward="false" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/Satchel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/SubRace.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUIHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizens.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/package-info.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/playerdata.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/Race.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/ProgressBar.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceFunctions.java" />
@@ -1114,13 +1100,6 @@
         <state relative-caret-position="419">
           <caret line="57" column="44" lean-forward="false" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/customitems.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="1145" column="15" lean-forward="false" selection-start-line="1145" selection-start-column="15" selection-end-line="1145" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1156,20 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/Kingdom.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1768">
@@ -1194,42 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="162" column="34" lean-forward="false" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2629#2630#0" expanded="false" />
-            <element signature="e#2662#2663#0" expanded="false" />
-            <element signature="method#createFiles#0;class#Kingdoms#0" expanded="false" />
-            <element signature="method#loadMysql#0;class#Kingdoms#0" expanded="false" />
-            <element signature="e#8687#8688#0" expanded="false" />
-            <element signature="e#8716#8717#0" expanded="false" />
-            <element signature="e#11684#11685#0" expanded="false" />
-            <element signature="e#11713#11714#0" expanded="false" />
-            <element signature="e#11759#11760#0" expanded="false" />
-            <element signature="e#11790#11791#0" expanded="false" />
-            <element signature="e#11838#11839#0" expanded="false" />
-            <element signature="e#11882#11883#0" expanded="false" />
-            <element signature="e#11933#11934#0" expanded="false" />
-            <element signature="e#11977#11978#0" expanded="false" />
-            <element signature="e#12030#12031#0" expanded="false" />
-            <element signature="e#12071#12072#0" expanded="false" />
-            <element signature="e#12621#12622#0" expanded="false" />
-            <element signature="e#12675#12676#0" expanded="false" />
-            <element signature="e#12730#12731#0" expanded="false" />
-            <element signature="e#12782#12783#0" expanded="false" />
-            <element signature="e#12839#12840#0" expanded="false" />
-            <element signature="e#12880#12881#0" expanded="false" />
-            <element signature="e#12911#12912#0" expanded="false" />
-            <element signature="e#12960#12961#0" expanded="false" />
-            <element signature="e#13000#13001#0" expanded="false" />
-            <element signature="e#13029#13030#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -1246,43 +1175,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/ChunkCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2975">
-          <caret line="183" column="36" lean-forward="false" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="129" column="42" lean-forward="false" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="29" column="43" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1290,30 +1189,109 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="131" column="5" lean-forward="false" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+        <state relative-caret-position="391">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/ChunkCommands.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="1122">
+          <caret line="183" column="36" lean-forward="false" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="21" column="9" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/kingdoms/KingdomCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="101" column="36" lean-forward="false" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/CitizenHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="442">
+          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/citizen/Citizen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="157" column="22" lean-forward="false" selection-start-line="157" selection-start-column="22" selection-end-line="157" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="53" column="17" lean-forward="false" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cooldowns.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/Kingdoms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="75" column="29" lean-forward="false" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+          <folding>
+            <element signature="e#2862#2863#0" expanded="true" />
+            <element signature="e#5421#5422#0" expanded="true" />
+            <element signature="e#5453#5454#0" expanded="true" />
+            <element signature="method#loadMysql#0;class#Kingdoms#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/race/RaceCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="352" lean-forward="false" selection-start-line="19" selection-start-column="352" selection-end-line="19" selection-end-column="352" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1322,8 +1300,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+        <state relative-caret-position="446">
+          <caret line="218" column="67" lean-forward="false" selection-start-line="218" selection-start-column="67" selection-end-line="218" selection-end-column="67" />
           <folding>
             <element signature="method#isItemInConfig#0;class#CustomItemConfig#0" expanded="false" />
             <element signature="method#getNameVariant#0;class#CustomItemConfig#0" expanded="false" />
@@ -1331,20 +1309,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/economy/GoldCommands.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/customitems.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="493">
+          <caret line="29" column="14" lean-forward="false" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/edenmc/kingdoms/customitems/CustomItemListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="164" column="13" lean-forward="true" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
           <folding />
         </state>
       </provider>

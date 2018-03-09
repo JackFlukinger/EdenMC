@@ -209,6 +209,15 @@ public class CustomItemConfig {
                 }
                 modifierText = "§5" + String.valueOf(newLuck) + " Luck";
                 return modifierText;
+            case "dodge":
+                int newDodge;
+                if (LevelUp) {
+                    newDodge = (int) (getLevel(item) * getMultiplier(item));
+                } else {
+                    newDodge = (int) ((getLevel(item) - 1) * getMultiplier(item));
+                }
+                modifierText = "§5" + String.valueOf(newDodge) + "% Dodge";
+                return modifierText;
         }
         return modifierText;
     }

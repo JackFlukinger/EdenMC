@@ -13,7 +13,7 @@ Items:
 KingdomPrices:
     Create: 150
     Claim: 50
-
+SwitchRaceCooldown: 86400
 Races:
     Human:
         GUI:

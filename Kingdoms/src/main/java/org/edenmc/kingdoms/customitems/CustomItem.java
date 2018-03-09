@@ -129,6 +129,10 @@ public class CustomItem {
                 int newLuck = (int) ((level - 1) * multiplier);
                 modifierText = "§5" + String.valueOf(newLuck) + " Luck";
                 return modifierText;
+            case "dodge":
+                int newDodge = (int) ((level - 1) * multiplier);
+                modifierText = "§5" + String.valueOf(newDodge) + "% Dodge";
+                return modifierText;
         }
         return modifierText;
     }

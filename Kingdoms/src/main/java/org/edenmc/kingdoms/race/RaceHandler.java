@@ -25,10 +25,19 @@ public class RaceHandler implements Listener {
             if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && !e.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) {
                 Citizen p = Kingdoms.getCitizen(e.getWhoClicked().getName());
                 String oldRace = "";
-                if (p.getRace() != null) {
+                if (p.getRace() != null && !p.getRace().equals("")) {
                     oldRace = p.getRace();
+                    if (oldRace.equals(e.getCurrentItem().getItemMeta().getDisplayName())) {
+                        p.getPlayer().closeInventory();
+                        p.getPlayer().sendMessage("§bYou are already a(n) " + oldRace);
+                        return;
+                    }
                     for (PotionEffect pot : Kingdoms.getRaceConf().getEffects(oldRace,p.getRacelevel())) {
                         p.getPlayer().removePotionEffect(pot.getType());
+                    }
+                    if (Kingdoms.getProgressBar(p) != null) {
+                        Kingdoms.getProgressBar(p).removePlayer(p.getPlayer());
+                        Kingdoms.removeProgressBar(p.getPlayer().getName());
                     }
                 }
                 String raceChosen = e.getCurrentItem().getItemMeta().getDisplayName();
@@ -43,8 +52,14 @@ public class RaceHandler implements Listener {
                     p.applyPotionEffects();
                     p.getPlayer().setPlayerListName(Kingdoms.getRaceConf().getColor(p.getRace()) + p.getPlayer().getName());
                 }
-                ConsoleCommandSender sender = Bukkit.getConsoleSender();
-                Bukkit.dispatchCommand(sender, "rtp 0 10000 -x 0 -z 0 -w world -p " + p.getName());
+                if (oldRace.equals("")) {
+                    ConsoleCommandSender sender = Bukkit.getConsoleSender();
+                    Bukkit.dispatchCommand(sender, "rtp 0 10000 -x 0 -z 0 -w world -p " + p.getName());
+                }
+                if (!oldRace.equals("")) {
+                    Kingdoms.getCooldowns().set("Race Cooldowns." + p.getPlayer().getUniqueId().toString(), System.currentTimeMillis());
+                    Kingdoms.saveCooldowns();
+                }
             }
             e.setCancelled(true);
 
@@ -57,11 +72,18 @@ public class RaceHandler implements Listener {
             if (e.getCursor() != null && e.getCursor().hasItemMeta() && !e.getCursor().getItemMeta().getDisplayName().equals(" ")) {
                 Citizen p = Kingdoms.getCitizen(e.getWhoClicked().getName());
                 String oldRace = "";
-                if (p.getRace() != null) {
+                if (p.getRace() != null && !p.getRace().equals("")) {
                     oldRace = p.getRace();
+                    if (oldRace.equals(e.getCursor().getItemMeta().getDisplayName())) {
+                        p.getPlayer().closeInventory();
+                        p.getPlayer().sendMessage("§bYou are already a(n) " + oldRace);
+                        return;
+                    }
                     for (PotionEffect pot : Kingdoms.getRaceConf().getEffects(oldRace,p.getRacelevel())) {
                         p.getPlayer().removePotionEffect(pot.getType());
                     }
+                    Kingdoms.getProgressBar(p).removePlayer(p.getPlayer());
+                    Kingdoms.removeProgressBar(p.getPlayer().getName());
                 }
                 String raceChosen = e.getCursor().getItemMeta().getDisplayName();
                 p.setRace(raceChosen);
@@ -75,6 +97,10 @@ public class RaceHandler implements Listener {
                     p.applyPotionEffects();
                     p.getPlayer().setPlayerListName(Kingdoms.getRaceConf().getColor(p.getRace()) + p.getPlayer().getName());
 
+                }
+                if (!oldRace.equals("")) {
+                    Kingdoms.getCooldowns().set("Race Cooldowns." + p.getPlayer().getUniqueId().toString(), System.currentTimeMillis());
+                    Kingdoms.saveCooldowns();
                 }
             }
             e.setCancelled(true);
@@ -91,7 +117,6 @@ public class RaceHandler implements Listener {
                     gui.open((Player) e.getPlayer());
                 }
             }, 1L);
-
         }
     }
 
